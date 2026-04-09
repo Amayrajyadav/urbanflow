@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanFlow — Admin Dashboard</title>
+  <meta name="description" content="UrbanFlow Smart City Admin Dashboard — Monitor, assign, and track road repairs.">
+  <!-- Block mobile: only show on desktop -->
+  <style>
+    .mobile-block { display:none; }
+    @media (max-width: 900px) {
+      .mobile-block { display:flex !important; }
+      body > *:not(.mobile-block) { display:none !important; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Mobile Block Screen -->
+  <div class="mobile-block" style="position:fixed;inset:0;background:#0B111A;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;text-align:center;z-index:9999">
+    <span class="material-icons-outlined" style="font-size:64px;color:#2C7BE5">desktop_windows</span>
+    <div style="font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;color:#fff">Desktop Only</div>
+    <div style="font-size:14px;color:#95AAC9;line-height:1.6">The UrbanFlow Admin Dashboard is designed for desktop browsers only. Please open this page on a computer with Chrome.</div>
+  </div>
+
+  <!-- ─── ADMIN LOGIN OVERLAY ─────────────────────────────── -->
+  <div id="admin-login-overlay" class="login-overlay">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="admin-logo-icon">
+          <span class="material-icons-outlined">admin_panel_settings</span>
+        </div>
+        <div class="anim-d1">
+          <h1 style="font-size:28px;font-weight:800;margin-bottom:4px;font-family:'Manrope',sans-serif">UrbanFlow Admin</h1>
+          <p style="font-size:14px;color:var(--text-muted)">Smart City Command Center</p>
+        </div>
+      </div>
+
+      <div class="login-form anim-d2">
+        <div class="form-group">
+          <label class="form-label">Admin Email</label>
+          <div class="form-input-wrap">
+            <span class="material-icons-outlined form-icon">alternate_email</span>
+            <input type="email" id="admin-email" class="form-input" placeholder="admin@urbanflow.gov.in" value="admin@demo.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="form-input-wrap">
+            <span class="material-icons-outlined form-icon">lock_outline</span>
+            <input type="password" id="admin-password" class="form-input" placeholder="••••••••" value="password">
+            <span class="material-icons-outlined form-icon-right pointer" onclick="toggleAdminPwd()">visibility</span>
+          </div>
+        </div>
+        <button class="btn-admin btn-primary-admin" id="admin-login-btn" onclick="adminLogin()">
+          <span class="btn-text-inner">Sign in to Dashboard</span>
+          <span class="material-icons-outlined">arrow_forward</span>
+        </button>
+        <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--text-muted)">
+          Demo: admin@demo.com / password
+        </div>
+      </div>
+
+      <div class="login-features anim-d3">
+        <div class="login-feat">
+          <span class="material-icons-outlined">bar_chart</span>
+          <span>Real-time Analytics</span>
+        </div>
+        <div class="login-feat">
+          <span class="material-icons-outlined">map</span>
+          <span>Live Map View</span>
+        </div>
+        <div class="login-feat">
+          <span class="material-icons-outlined">engineering</span>
+          <span>Worker Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MAIN ADMIN LAYOUT ───────────────────────────────── -->
+  <div id="admin-app" style="display:none">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-brand-icon"><span class="material-icons-outlined">location_city</span></div>
+        <div>
+          <div class="sidebar-brand">UrbanFlow</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:0.5px;text-transform:uppercase">Admin Portal</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">MAIN</div>
+        <a class="sidebar-link active" id="link-dashboard" onclick="showSection('dashboard',this)">
+          <span class="material-icons-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="sidebar-link" id="link-reports" onclick="showSection('reports',this)">
+          <span class="material-icons-outlined">assignment</span>
+          <span>Reports</span>
+          <span class="sidebar-badge" id="reports-badge">5</span>
+        </a>
+        <a class="sidebar-link" id="link-map" onclick="showSection('map',this)">
+          <span class="material-icons-outlined">map</span>
+          <span>Live Map</span>
+        </a>
+
+        <div class="sidebar-section-label" style="margin-top:24px">MANAGEMENT</div>
+        <a class="sidebar-link" id="link-workers" onclick="showSection('workers',this)">
+          <span class="material-icons-outlined">engineering</span>
+          <span>Workers</span>
+        </a>
+        <a class="sidebar-link" id="link-settings" onclick="showSection('settings',this)">
+          <span class="material-icons-outlined">settings</span>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-user-card">
+          <div class="admin-user-avatar" id="sidebar-avatar-initials">PM</div>
+          <div style="flex:1;min-width:0">
+            <div class="admin-user-name" id="sidebar-name">Priya Mehta</div>
+            <div class="admin-user-role">Super Admin</div>
+          </div>
+          <span class="material-icons-outlined pointer" style="color:rgba(255,255,255,0.4);font-size:18px" onclick="adminLogout()" title="Logout">logout</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- Top Bar -->
+      <header class="admin-topbar">
+        <div>
+          <div id="topbar-title" style="font-size:22px;font-weight:800;font-family:'Manrope',sans-serif">Dashboard</div>
+          <div id="topbar-subtitle" style="font-size:13px;color:var(--text-muted);margin-top:2px">Overview of all city road reports</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="search-bar">
+            <span class="material-icons-outlined" style="font-size:18px;color:var(--text-muted)">search</span>
+            <input type="text" placeholder="Search reports, workers…" id="global-search" oninput="globalSearch(this.value)">
+          </div>
+          <button class="icon-btn" title="Notifications">
+            <span class="material-icons-outlined">notifications_none</span>
+            <span class="notif-dot"></span>
+          </button>
+          <button class="icon-btn" title="Refresh" onclick="refreshAll()">
+            <span class="material-icons-outlined">refresh</span>
+          </button>
+          <div class="live-indicator">
+            <div class="live-dot-admin"></div>
+            <span>Live</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ═══ DASHBOARD SECTION ═══ -->
+      <section class="admin-section" id="section-dashboard">
+
+        <!-- Stat Cards -->
+        <div class="stats-row">
+          <div class="stat-card anim-card" id="sc-total" style="--card-color:#2C7BE5">
+            <div class="stat-card-icon" style="background:rgba(44,123,229,0.15);color:#2C7BE5">
+              <span class="material-icons-outlined">assignment</span>
+            </div>
+            <div>
+              <div class="stat-card-num" id="stat-total">6</div>
+              <div class="stat-card-label">Total Reports</div>
+            </div>
+            <div class="stat-card-trend trend-up">+12% <span class="material-icons-outlined" style="font-size:14px">trending_up</span></div>
+          </div>
+          <div class="stat-card anim-card" style="--card-color:#E0A64C">
+            <div class="stat-card-icon" style="background:rgba(224,166,76,0.15);color:#E0A64C">
+              <span class="material-icons-outlined">hourglass_top</span>
+            </div>
+            <div>
+              <div class="stat-card-num" id="stat-pending">2</div>
+              <div class="stat-card-label">Pending</div>
+            </div>
+            <div class="stat-card-trend trend-neutral">0% this week</div>
+          </div>
+          <div class="stat-card anim-card" style="--card-color:#00D27A">
+            <div class="stat-card-icon" style="background:rgba(0,210,122,0.15);color:#00D27A">
+              <span class="material-icons-outlined">check_circle</span>
+            </div>
+            <div>
+              <div class="stat-card-num" id="stat-completed">1</div>
+              <div class="stat-card-label">Completed</div>
+            </div>
+            <div class="stat-card-trend trend-up">+30% <span class="material-icons-outlined" style="font-size:14px">trending_up</span></div>
+          </div>
+          <div class="stat-card anim-card" style="--card-color:#E63757">
+            <div class="stat-card-icon" style="background:rgba(230,55,87,0.15);color:#E63757">
+              <span class="material-icons-outlined">engineering</span>
+            </div>
+            <div>
+              <div class="stat-card-num" id="stat-workers">3</div>
+              <div class="stat-card-label">Active Workers</div>
+            </div>
+            <div class="stat-card-trend trend-up">+1 this week</div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+          <!-- Bar Chart -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <div class="chart-title">Reports by Category</div>
+                <div class="chart-subtitle">All-time breakdown</div>
+              </div>
+              <select class="filter-select" style="font-size:12px;padding:6px 12px">
+                <option>This Month</option>
+                <option>Last Month</option>
+                <option>This Year</option>
+              </select>
+            </div>
+            <div class="chart-body">
+              <canvas id="bar-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Pie Chart -->
+          <div class="chart-card" style="flex:0.6">
+            <div class="chart-header">
+              <div>
+                <div class="chart-title">Status Distribution</div>
+                <div class="chart-subtitle">Current state</div>
+              </div>
+            </div>
+            <div class="chart-body">
+              <canvas id="pie-chart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hourly + Recent -->
+        <div class="charts-row">
+          <!-- Hourly Chart -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <div class="chart-title">Reports per Hour</div>
+                <div class="chart-subtitle">Today's activity timeline</div>
+              </div>
+            </div>
+            <div class="chart-body">
+              <canvas id="hourly-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Recent Reports mini list -->
+          <div class="chart-card" style="flex:0.6">
+            <div class="chart-header">
+              <div class="chart-title">Recent Reports</div>
+              <a class="link-text" onclick="showSection('reports',document.getElementById('link-reports'))">View All →</a>
+            </div>
+            <div id="dash-recent-list" style="max-height:280px;overflow-y:auto">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ═══ REPORTS SECTION ═══ -->
+      <section class="admin-section hidden" id="section-reports">
+        <!-- Filter bar -->
+        <div class="filter-bar">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="filter-group">
+              <label class="filter-label">Status</label>
+              <select class="filter-select" id="filter-status" onchange="applyFilters()">
+                <option value="">All</option>
+                <option value="submitted">Pending</option>
+                <option value="assigned">Assigned</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Category</label>
+              <select class="filter-select" id="filter-category" onchange="applyFilters()">
+                <option value="">All</option>
+                <option value="pothole">Pothole</option>
+                <option value="crack">Crack</option>
+                <option value="water_logging">Water Logging</option>
+                <option value="garbage">Garbage</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Date</label>
+              <input type="date" class="filter-select" id="filter-date" onchange="applyFilters()">
+            </div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <div class="search-bar">
+              <span class="material-icons-outlined" style="font-size:16px;color:var(--text-muted)">search</span>
+              <input type="text" placeholder="Search reports…" id="report-search" oninput="applyFilters()">
+            </div>
+            <button class="btn-admin btn-primary-admin" style="padding:8px 16px;font-size:13px" onclick="exportReports()">
+              <span class="material-icons-outlined" style="font-size:16px">download</span>
+              Export
+            </button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-card">
+          <table class="data-table" id="reports-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th onclick="sortTable('id')" style="cursor:pointer">ID ↕</th>
+                <th onclick="sortTable('category')" style="cursor:pointer">Category ↕</th>
+                <th>Location</th>
+                <th>GPS</th>
+                <th onclick="sortTable('status')" style="cursor:pointer">Status ↕</th>
+                <th>Assigned Worker</th>
+                <th onclick="sortTable('created_at')" style="cursor:pointer">Date ↕</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reports-tbody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <!-- Filled by JS -->
+        </div>
+      </section>
+
+      <!-- ═══ MAP SECTION ═══ -->
+      <section class="admin-section hidden" id="section-map">
+        <div style="display:flex;gap:16px;height:calc(100vh - 140px)">
+          <!-- Map -->
+          <div style="flex:1;border-radius:16px;overflow:hidden;position:relative">
+            <div id="admin-leaflet-map" style="width:100%;height:100%"></div>
+            <!-- Map Legend -->
+            <div style="position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.95);padding:16px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);z-index:400;backdrop-filter:blur(8px)">
+              <div style="font-size:11px;font-weight:700;color:#95AAC9;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">LEGEND</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px"><div style="width:12px;height:12px;background:#E63757;border-radius:50%"></div>Pothole</div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px"><div style="width:12px;height:12px;background:#2C7BE5;border-radius:50%"></div>Road Crack</div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px"><div style="width:12px;height:12px;background:#00D27A;border-radius:50%"></div>Water Logging</div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:13px"><div style="width:12px;height:12px;background:#E0A64C;border-radius:50%"></div>Garbage</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Sidebar -->
+          <div style="width:300px;display:flex;flex-direction:column;gap:12px;overflow-y:auto">
+            <div class="chart-card" style="padding:16px">
+              <div class="chart-title mb-2">Report Locations</div>
+              <div id="map-report-list">
+                <!-- Filled by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ WORKERS SECTION ═══ -->
+      <section class="admin-section hidden" id="section-workers">
+        <div class="table-card">
+          <div style="padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:18px;font-weight:700;font-family:'Manrope',sans-serif">Field Workers</div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:2px">Manage worker assignments and performance</div>
+            </div>
+            <button class="btn-admin btn-primary-admin" style="padding:8px 16px;font-size:13px">
+              <span class="material-icons-outlined" style="font-size:16px">person_add</span>
+              Add Worker
+            </button>
+          </div>
+          <table class="data-table" style="margin-top:16px" id="workers-table">
+            <thead>
+              <tr>
+                <th>Worker</th>
+                <th>Worker ID</th>
+                <th>Tasks Completed</th>
+                <th>Active Tasks</th>
+                <th>Credibility Score</th>
+                <th>Zone</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="workers-tbody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ═══ SETTINGS SECTION ═══ -->
+      <section class="admin-section hidden" id="section-settings">
+        <div class="chart-card" style="max-width:640px">
+          <div class="chart-title mb-4">System Settings</div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div>
+              <label class="form-label">FastAPI AI Endpoint</label>
+              <div class="form-input-wrap">
+                <span class="material-icons-outlined form-icon">api</span>
+                <input type="text" class="form-input" value="http://localhost:8000/detect" id="setting-ai-url">
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Map Default Center (Lat,Lng)</label>
+              <div class="form-input-wrap">
+                <span class="material-icons-outlined form-icon">map</span>
+                <input type="text" class="form-input" value="28.6139, 77.2090">
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border)">
+              <div>
+                <div style="font-weight:600;font-size:14px">Real-time Notifications</div>
+                <div style="font-size:12px;color:var(--text-muted)">Get alerts for new report submissions</div>
+              </div>
+              <div class="admin-toggle active"><div class="admin-toggle-knob"></div></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border)">
+              <div>
+                <div style="font-weight:600;font-size:14px">Dark Mode</div>
+                <div style="font-size:12px;color:var(--text-muted)">Switch admin dashboard theme</div>
+              </div>
+              <div class="admin-toggle" id="admin-dark-toggle" onclick="adminToggleDark()"><div class="admin-toggle-knob"></div></div>
+            </div>
+            <button class="btn-admin btn-primary-admin" onclick="saveSettings()">
+              <span class="material-icons-outlined">save</span>
+              Save Settings
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /admin-app -->
+
+  <!-- Assign Worker Modal -->
+  <div id="assign-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Assign Worker</div>
+        <span class="material-icons-outlined pointer" onclick="closeModal()" style="color:var(--text-muted)">close</span>
+      </div>
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px" id="assign-modal-report-info"></div>
+      <div class="form-group">
+        <label class="form-label">Select Worker</label>
+        <div class="form-input-wrap">
+          <span class="material-icons-outlined form-icon">engineering</span>
+          <select class="form-input" id="assign-worker-select">
+            <!-- Filled by JS -->
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px">
+        <button class="btn-admin btn-outline-admin flex-1" onclick="closeModal()">Cancel</button>
+        <button class="btn-admin btn-primary-admin flex-1" onclick="confirmAssign()">
+          <span class="material-icons-outlined" style="font-size:18px">assignment_ind</span>
+          Assign
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
