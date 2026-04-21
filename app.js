@@ -46,7 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordions();
   populateDemoAccounts();
   updateGlobalNavVisibility(currentScreen);
+  
+  // Handle direct role routing from URL if present
+  checkRoleRouting();
 });
+
+function checkRoleRouting() {
+  const params = new URLSearchParams(window.location.search);
+  const role = params.get('role');
+  if (role) {
+    selectRole(role);
+  }
+}
 
 // ─── Clock ────────────────────────────────────────────────────
 function initClock() {
