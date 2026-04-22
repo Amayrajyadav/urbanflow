@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,59 +8,147 @@
   <meta name="description" content="AI-powered smart city road damage reporting and repair verification system.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     /* ─── Reveal system (defined here so it's always loaded) ─── */
-    .reveal        { animation: revealUp   0.5s ease both; }
-    .reveal-left   { animation: revealLeft 0.5s ease both; }
-    .reveal-right  { animation: revealRight 0.5s ease both; }
-    .reveal-d1  { animation-delay: 0.07s; }
-    .reveal-d2  { animation-delay: 0.14s; }
-    .reveal-d3  { animation-delay: 0.21s; }
-    .reveal-d4  { animation-delay: 0.28s; }
-    .reveal-d5  { animation-delay: 0.35s; }
-    .reveal-d6  { animation-delay: 0.42s; }
+    .reveal {
+      animation: revealUp 0.5s ease both;
+    }
+
+    .reveal-left {
+      animation: revealLeft 0.5s ease both;
+    }
+
+    .reveal-right {
+      animation: revealRight 0.5s ease both;
+    }
+
+    .reveal-d1 {
+      animation-delay: 0.07s;
+    }
+
+    .reveal-d2 {
+      animation-delay: 0.14s;
+    }
+
+    .reveal-d3 {
+      animation-delay: 0.21s;
+    }
+
+    .reveal-d4 {
+      animation-delay: 0.28s;
+    }
+
+    .reveal-d5 {
+      animation-delay: 0.35s;
+    }
+
+    .reveal-d6 {
+      animation-delay: 0.42s;
+    }
 
     /* ─── Role Selection Screen ─── */
     #screen-role-select {
-      background: linear-gradient(160deg,#0d1b2e 0%,#12263f 55%,#0a1828 100%);
+      background: linear-gradient(160deg, #0d1b2e 0%, #12263f 55%, #0a1828 100%);
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    .role-screen-inner { padding: 32px 24px 48px; }
+
+    .role-screen-inner {
+      padding: 32px 24px 48px;
+    }
+
     .role-brand {
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 36px;
     }
-    .role-brand-icon {
-      width: 52px; height: 52px;
-      background: rgba(44,123,229,0.15);
-      border: 1.5px solid rgba(44,123,229,0.3);
-      border-radius: 16px;
-      display: flex; align-items: center; justify-content:center;
-    }
-    .role-brand-icon .material-icons-outlined { font-size:26px; color:#5B9FEF; }
-    .role-brand-text { flex:1; }
-    .role-brand-name { font-size:22px; font-weight:800; color:#fff; font-family: 'Manrope', sans-serif; }
-    .role-brand-sub  { font-size:11px; color:rgba(255,255,255,0.45); font-weight:500; letter-spacing:1.2px; margin-top:2px; }
 
-    .role-headline { margin-bottom: 8px; }
-    .role-headline h1 { font-size: 28px; font-weight: 800; color: #fff; font-family: 'Manrope',sans-serif; line-height:1.2; }
-    .role-headline p  { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; line-height:1.5; }
+    .role-brand-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(44, 123, 229, 0.15);
+      border: 1.5px solid rgba(44, 123, 229, 0.3);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .role-brand-icon .material-icons-outlined {
+      font-size: 26px;
+      color: #5B9FEF;
+    }
+
+    .role-brand-text {
+      flex: 1;
+    }
+
+    .role-brand-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .role-brand-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      margin-top: 2px;
+    }
+
+    .role-headline {
+      margin-bottom: 8px;
+    }
+
+    .role-headline h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      line-height: 1.2;
+    }
+
+    .role-headline p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
 
     .role-divider {
-      display:flex; align-items:center; gap:12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin: 28px 0 20px;
     }
-    .role-divider-line { flex:1; height:1px; background:rgba(255,255,255,0.1); }
-    .role-divider span { font-size:11px; color:rgba(255,255,255,0.35); font-weight:600; letter-spacing:1px; }
+
+    .role-divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .role-divider span {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
 
     .role-card {
-      display: flex; align-items: center; gap: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
       padding: 18px 20px;
       border-radius: 18px;
       cursor: pointer;
@@ -68,56 +157,113 @@
       border: 1.5px solid;
       position: relative;
       overflow: hidden;
+      text-decoration: none;
     }
+
     .role-card::before {
-      content:'';
-      position:absolute; inset:0;
-      opacity:0;
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
       transition: opacity 0.25s;
     }
-    .role-card:hover::before { opacity:1; }
-    .role-card:hover { transform: translateY(-2px); }
-    .role-card:active { transform: scale(0.97); }
+
+    .role-card:hover::before {
+      opacity: 1;
+    }
+
+    .role-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .role-card:active {
+      transform: scale(0.97);
+    }
 
     .role-card.admin {
-      background: rgba(44,123,229,0.12);
-      border-color: rgba(44,123,229,0.3);
+      background: rgba(44, 123, 229, 0.12);
+      border-color: rgba(44, 123, 229, 0.3);
     }
-    .role-card.admin::before { background: rgba(44,123,229,0.1); }
+
+    .role-card.admin::before {
+      background: rgba(44, 123, 229, 0.1);
+    }
 
     .role-card.citizen {
-      background: rgba(0,210,122,0.10);
-      border-color: rgba(0,210,122,0.3);
+      background: rgba(0, 210, 122, 0.10);
+      border-color: rgba(0, 210, 122, 0.3);
     }
-    .role-card.citizen::before { background: rgba(0,210,122,0.08); }
+
+    .role-card.citizen::before {
+      background: rgba(0, 210, 122, 0.08);
+    }
 
     .role-card.worker {
-      background: rgba(224,166,76,0.12);
-      border-color: rgba(224,166,76,0.3);
+      background: rgba(224, 166, 76, 0.12);
+      border-color: rgba(224, 166, 76, 0.3);
     }
-    .role-card.worker::before { background: rgba(224,166,76,0.08); }
+
+    .role-card.worker::before {
+      background: rgba(224, 166, 76, 0.08);
+    }
 
     .role-card-icon {
-      width: 52px; height: 52px;
+      width: 52px;
+      height: 52px;
       border-radius: 15px;
-      display: flex; align-items:center; justify-content:center;
-      flex-shrink:0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
-    .role-card-icon .material-icons-outlined { font-size: 26px; }
-    .role-card.admin   .role-card-icon { background:rgba(44,123,229,0.2);  color:#5B9FEF; }
-    .role-card.citizen .role-card-icon { background:rgba(0,210,122,0.2);   color:#00D27A; }
-    .role-card.worker  .role-card-icon { background:rgba(224,166,76,0.2);  color:#E0A64C; }
 
-    .role-card-text { flex:1; }
-    .role-card-title { font-size:16px; font-weight:700; color:#fff; font-family:'Manrope',sans-serif; }
-    .role-card-desc  { font-size:12px; color:rgba(255,255,255,0.5); margin-top:3px; }
+    .role-card-icon .material-icons-outlined {
+      font-size: 26px;
+    }
 
-    .role-card-arr .material-icons-outlined { font-size:20px; color:rgba(255,255,255,0.3); }
+    .role-card.admin .role-card-icon {
+      background: rgba(44, 123, 229, 0.2);
+      color: #5B9FEF;
+    }
+
+    .role-card.citizen .role-card-icon {
+      background: rgba(0, 210, 122, 0.2);
+      color: #00D27A;
+    }
+
+    .role-card.worker .role-card-icon {
+      background: rgba(224, 166, 76, 0.2);
+      color: #E0A64C;
+    }
+
+    .role-card-text {
+      flex: 1;
+    }
+
+    .role-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .role-card-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 3px;
+    }
+
+    .role-card-arr .material-icons-outlined {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.3);
+    }
 
     .role-screen-footer {
-      text-align:center; margin-top:32px;
-      font-size:11px; color:rgba(255,255,255,0.25);
-      font-weight:500;
+      text-align: center;
+      margin-top: 32px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+      font-weight: 500;
     }
 
     /* ─── Login screens on dark background ─── */
@@ -129,876 +275,1338 @@
     }
 
     /* ─── Worker task card fix ─── */
-    .worker-task-card { display:flex; flex-direction:column; }
-    .worker-task-card-img { display:block; }
+    .worker-task-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .worker-task-card-img {
+      display: block;
+    }
 
     /* ─── Worker profile fix ─── */
     #screen-worker-profile .content-pad *,
-    #screen-worker-profile > div * {
+    #screen-worker-profile>div * {
       /* Ensure nothing is hidden by a rogue class */
     }
-    .settings-list  { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:16px; }
-    .settings-item  { display:flex; align-items:center; gap:14px; padding:14px 16px; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.15s; }
-    .settings-item:last-child { border-bottom:none; }
-    .settings-item:hover { background:var(--surface-alt); }
-    .settings-item.danger .title-sm { color:var(--danger); }
-    .settings-item.danger .settings-icon { background:rgba(230,55,87,0.08); color:var(--danger); }
-    .settings-icon  { width:36px; height:36px; border-radius:10px; background:var(--surface-alt); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .settings-icon .material-icons-outlined { font-size:18px; color:var(--text-muted); }
-    .toggle { width:44px; height:24px; border-radius:12px; background:var(--border); position:relative; cursor:pointer; transition:background 0.3s; flex-shrink:0; }
-    .toggle.active { background:var(--primary); }
-    .toggle-knob { width:18px; height:18px; border-radius:50%; background:#fff; position:absolute; top:3px; left:3px; transition:transform 0.3s; box-shadow:0 1px 4px rgba(0,0,0,0.15); }
-    .toggle.active .toggle-knob { transform:translateX(20px); }
+
+    .settings-list {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .settings-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .settings-item:last-child {
+      border-bottom: none;
+    }
+
+    .settings-item:hover {
+      background: var(--surface-alt);
+    }
+
+    .settings-item.danger .title-sm {
+      color: var(--danger);
+    }
+
+    .settings-item.danger .settings-icon {
+      background: rgba(230, 55, 87, 0.08);
+      color: var(--danger);
+    }
+
+    .settings-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--surface-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .settings-icon .material-icons-outlined {
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+
+    .toggle {
+      width: 44px;
+      height: 24px;
+      border-radius: 12px;
+      background: var(--border);
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+      flex-shrink: 0;
+    }
+
+    .toggle.active {
+      background: var(--primary);
+    }
+
+    .toggle-knob {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.3s;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .toggle.active .toggle-knob {
+      transform: translateX(20px);
+    }
 
     /* ─── Status timeline ─── */
-    .status-timeline { display:flex; flex-direction:column; gap:0; }
-    .timeline-step   { display:flex; align-items:flex-start; gap:12px; padding-bottom:16px; position:relative; }
-    .timeline-step:last-child::before { display:none; }
-    .timeline-step::before { content:''; position:absolute; left:13px; top:28px; bottom:0; width:2px; background:var(--border); }
-    .timeline-dot { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:1; }
-    .timeline-dot.done    { background:var(--success); color:#fff; }
-    .timeline-dot.pending { background:var(--border);  color:var(--text-muted); }
-    .timeline-dot .material-icons-outlined { font-size:14px; }
+    .status-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 16px;
+      position: relative;
+    }
+
+    .timeline-step:last-child::before {
+      display: none;
+    }
+
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      left: 13px;
+      top: 28px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .timeline-dot.done {
+      background: var(--success);
+      color: #fff;
+    }
+
+    .timeline-dot.pending {
+      background: var(--border);
+      color: var(--text-muted);
+    }
+
+    .timeline-dot .material-icons-outlined {
+      font-size: 14px;
+    }
 
     /* ─── Report status card ─── */
-    .report-status-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:14px; cursor:pointer; margin-bottom:12px; transition:all 0.2s; }
-    .report-status-card:hover { transform:translateY(-1px); box-shadow:var(--shadow-md); border-color:var(--primary); }
+    .report-status-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .report-status-card:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
 
     /* ─── AI scan line fix ─── */
-    .ai-scan-line { position:absolute; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,rgba(44,123,229,0.9),transparent); box-shadow:0 0 10px rgba(44,123,229,0.5); animation:scanLine 2.5s ease-in-out infinite; top:20%; }
+    .ai-scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(44, 123, 229, 0.9), transparent);
+      box-shadow: 0 0 10px rgba(44, 123, 229, 0.5);
+      animation: scanLine 2.5s ease-in-out infinite;
+      top: 20%;
+    }
 
     /* ─── report detail image ─── */
-    .report-detail-img { width:100%; height:220px; object-fit:cover; border-radius:0 0 20px 20px; margin-bottom:20px; display:block; }
+    .report-detail-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 20px;
+      display: block;
+    }
 
     /* ─── Capture box ─── */
-    .capture-box { border:2px dashed var(--border); border-radius:16px; padding:40px 20px; text-align:center; cursor:pointer; transition:all 0.2s; background:var(--surface-alt); }
-    .capture-box:hover { border-color:var(--primary); background:var(--primary-light); }
-    .capture-box-icon { width:64px; height:64px; background:var(--primary-light); border-radius:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
-    .capture-box-icon .material-icons-outlined { font-size:32px; color:var(--primary); }
+    .capture-box {
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 40px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--surface-alt);
+    }
+
+    .capture-box:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .capture-box-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--primary-light);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .capture-box-icon .material-icons-outlined {
+      font-size: 32px;
+      color: var(--primary);
+    }
   </style>
 </head>
+
 <body>
-<div id="app-shell">
+  <div id="app-shell">
 
-  <div class="status-bar">
-    <span id="status-time">9:41</span>
-    <div class="status-icons">
-      <span class="material-icons-outlined" style="font-size:15px">signal_cellular_alt</span>
-      <span class="material-icons-outlined" style="font-size:15px">wifi</span>
-      <span class="material-icons-outlined" style="font-size:15px">battery_full</span>
+    <div class="status-bar">
+      <span id="status-time">9:41</span>
+      <div class="status-icons">
+        <span class="material-icons-outlined" style="font-size:15px">signal_cellular_alt</span>
+        <span class="material-icons-outlined" style="font-size:15px">wifi</span>
+        <span class="material-icons-outlined" style="font-size:15px">battery_full</span>
+      </div>
     </div>
-  </div>
 
-  <div class="loading-overlay" id="loading-overlay">
-    <div class="spinner"></div>
-    <div class="body-sm text-muted" id="loading-text">Loading…</div>
-  </div>
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="spinner"></div>
+      <div class="body-sm text-muted" id="loading-text">Loading…</div>
+    </div>
 
-  <div id="screen-container">
+    <div id="screen-container">
 
-    <!-- ════════════════════════════════════════
+      <!-- ════════════════════════════════════════
          ROLE SELECTION (Landing Screen)
     ════════════════════════════════════════ -->
-    <div class="screen" id="screen-role-select" data-active="true">
-      <div class="role-screen-inner">
+      <div class="screen" id="screen-role-select" data-active="true">
+        <div class="role-screen-inner">
 
-        <!-- Brand -->
-        <div class="role-brand reveal">
-          <div class="role-brand-icon"><span class="material-icons-outlined">location_city</span></div>
-          <div class="role-brand-text">
-            <div class="role-brand-name">UrbanFlow</div>
-            <div class="role-brand-sub">SMART CITY MONITORING</div>
+          <!-- Brand -->
+          <div class="role-brand reveal">
+            <div class="role-brand-icon"><span class="material-icons-outlined">location_city</span></div>
+            <div class="role-brand-text">
+              <div class="role-brand-name">UrbanFlow</div>
+              <div class="role-brand-sub">SMART CITY MONITORING</div>
+            </div>
           </div>
-        </div>
 
-        <!-- Headline -->
-        <div class="role-headline reveal reveal-d1">
-          <h1>Select your role<br>to continue</h1>
-          <p>Choose how you use UrbanFlow — each role has a unique experience tailored to your responsibilities.</p>
-        </div>
-
-        <!-- Role Divider -->
-        <div class="role-divider reveal reveal-d2">
-          <div class="role-divider-line"></div>
-          <span>CHOOSE ROLE</span>
-          <div class="role-divider-line"></div>
-        </div>
-
-        <!-- Admin Card -->
-        <div class="role-card admin reveal reveal-d2" onclick="selectRole('admin')">
-          <div class="role-card-icon"><span class="material-icons-outlined">admin_panel_settings</span></div>
-          <div class="role-card-text">
-            <div class="role-card-title">Admin Portal</div>
-            <div class="role-card-desc">Manage reports, workers, analytics &amp; maps</div>
+          <!-- Headline -->
+          <div class="role-headline reveal reveal-d1">
+            <h1>Select your role<br>to continue</h1>
+            <p>Choose how you use UrbanFlow — each role has a unique experience tailored to your responsibilities.</p>
           </div>
-          <div class="role-card-arr"><span class="material-icons-outlined">chevron_right</span></div>
-        </div>
 
-        <!-- Citizen Card -->
-        <div class="role-card citizen reveal reveal-d3" onclick="selectRole('citizen')">
-          <div class="role-card-icon"><span class="material-icons-outlined">person</span></div>
-          <div class="role-card-text">
-            <div class="role-card-title">Citizen</div>
-            <div class="role-card-desc">Report road damage and track repairs</div>
+          <!-- Role Divider -->
+          <div class="role-divider reveal reveal-d2">
+            <div class="role-divider-line"></div>
+            <span>CHOOSE ROLE</span>
+            <div class="role-divider-line"></div>
           </div>
-          <div class="role-card-arr"><span class="material-icons-outlined">chevron_right</span></div>
-        </div>
 
-        <!-- Worker Card -->
-        <div class="role-card worker reveal reveal-d4" onclick="selectRole('worker')">
-          <div class="role-card-icon"><span class="material-icons-outlined">engineering</span></div>
-          <div class="role-card-text">
-            <div class="role-card-title">Field Worker</div>
-            <div class="role-card-desc">View assigned tasks and log repair progress</div>
+          <!-- Admin Card -->
+          <a href="admin.html" class="role-card admin reveal reveal-d2">
+            <div class="role-card-icon"><span class="material-icons-outlined">admin_panel_settings</span></div>
+            <div class="role-card-text">
+              <div class="role-card-title">Admin Portal</div>
+              <div class="role-card-desc">Manage reports, workers, analytics &amp; maps</div>
+            </div>
+            <div class="role-card-arr"><span class="material-icons-outlined">chevron_right</span></div>
+          </a>
+
+          <!-- Citizen Card -->
+          <a href="citizen.html" class="role-card citizen reveal reveal-d3">
+            <div class="role-card-icon"><span class="material-icons-outlined">person</span></div>
+            <div class="role-card-text">
+              <div class="role-card-title">Citizen</div>
+              <div class="role-card-desc">Report road damage and track repairs</div>
+            </div>
+            <div class="role-card-arr"><span class="material-icons-outlined">chevron_right</span></div>
+          </a>
+
+          <!-- Worker Card -->
+          <a href="worker.html" class="role-card worker reveal reveal-d4">
+            <div class="role-card-icon"><span class="material-icons-outlined">engineering</span></div>
+            <div class="role-card-text">
+              <div class="role-card-title">Field Worker</div>
+              <div class="role-card-desc">View assigned tasks and log repair progress</div>
+            </div>
+            <div class="role-card-arr"><span class="material-icons-outlined">chevron_right</span></div>
+          </a>
+
+          <!-- Footer -->
+          <div class="role-screen-footer reveal reveal-d5">
+            UrbanFlow City Systems · v4.1.0<br>
+            Powered by AI &amp; GPS Technology
           </div>
-          <div class="role-card-arr"><span class="material-icons-outlined">chevron_right</span></div>
-        </div>
 
-        <!-- Footer -->
-        <div class="role-screen-footer reveal reveal-d5">
-          UrbanFlow City Systems · v4.1.0<br>
-          Powered by AI &amp; GPS Technology
         </div>
-
       </div>
-    </div>
 
-    <!-- ════════════════════════════════════════
+      <!-- ════════════════════════════════════════
          ADMIN LOGIN
     ════════════════════════════════════════ -->
-    <div class="screen" id="screen-admin-login">
-      <div class="login-top-bar">
-        <span class="material-icons-outlined text-muted pointer" onclick="navigateTo('screen-role-select')">arrow_back</span>
-        <div style="font-weight:800;font-family:var(--font-heading);font-size:15px">Admin Login</div>
-        <div style="width:24px"></div>
-      </div>
-
-      <div class="content-pad" style="padding-top:20px">
-        <div style="margin-bottom:28px">
-          <div class="icon-circle" style="background:linear-gradient(135deg,#2C7BE5,#1A5DC8);box-shadow:0 8px 20px rgba(44,123,229,0.4);margin-left:0">
-            <span class="material-icons-outlined">admin_panel_settings</span>
-          </div>
-          <div class="body-xs text-muted mb-1 mt-3">ADMIN PORTAL</div>
-          <h1 class="title-xl mb-1">Admin Dashboard</h1>
-          <p class="body-md text-muted">Full system access — analytics, worker management, and report oversight.</p>
+      <div class="screen" id="screen-admin-login">
+        <div class="login-top-bar">
+          <span class="material-icons-outlined text-muted pointer"
+            onclick="navigateTo('screen-role-select')">arrow_back</span>
+          <div style="font-weight:800;font-family:var(--font-heading);font-size:15px">Admin Login</div>
+          <div style="width:24px"></div>
         </div>
 
-        <div class="input-group">
-          <label class="input-label">Admin Email</label>
-          <div class="input-wrapper">
-            <span class="material-icons-outlined input-icon">alternate_email</span>
-            <input type="email" id="admin-login-email" class="input-field" placeholder="admin@demo.com">
-          </div>
-        </div>
-        <div class="input-group" style="margin-bottom:20px">
-          <label class="input-label">Password</label>
-          <div class="input-wrapper">
-            <span class="material-icons-outlined input-icon">lock_outline</span>
-            <input type="password" id="admin-login-pwd" class="input-field" placeholder="••••••••">
-            <span class="material-icons-outlined input-action" id="admin-toggle-pwd" onclick="togglePassword('admin-login-pwd','admin-toggle-pwd')">visibility</span>
-          </div>
-        </div>
-
-        <button class="btn btn-primary btn-full mb-4" id="admin-login-btn" onclick="loginAdmin()">
-          <span class="btn-text">Enter Admin Dashboard</span>
-          <span class="material-icons-outlined" style="font-size:18px">arrow_forward</span>
-        </button>
-
-        <!-- Admin demo account -->
-        <div class="demo-accounts-section">
-          <div class="demo-section-label">
-            <div class="demo-line"></div><span>DEMO ACCOUNT</span><div class="demo-line"></div>
-          </div>
-          <div class="demo-account-card" style="border-color:rgba(44,123,229,0.25)" onclick="fillAdminDemo()">
-            <div class="demo-avatar-circle"><span class="material-icons-outlined" style="font-size:20px">admin_panel_settings</span></div>
-            <div class="flex-1">
-              <div class="title-sm">Priya Mehta — Super Admin</div>
-              <div class="body-xs text-muted">admin@demo.com</div>
+        <div class="content-pad" style="padding-top:20px">
+          <div style="margin-bottom:28px">
+            <div class="icon-circle"
+              style="background:linear-gradient(135deg,#2C7BE5,#1A5DC8);box-shadow:0 8px 20px rgba(44,123,229,0.4);margin-left:0">
+              <span class="material-icons-outlined">admin_panel_settings</span>
             </div>
-            <span class="material-icons-outlined text-muted" style="font-size:18px">login</span>
+            <div class="body-xs text-muted mb-1 mt-3">ADMIN PORTAL</div>
+            <h1 class="title-xl mb-1">Admin Dashboard</h1>
+            <p class="body-md text-muted">Full system access — analytics, worker management, and report oversight.</p>
           </div>
-        </div>
 
-        <div class="card mt-4" style="background:rgba(44,123,229,0.04);border-color:rgba(44,123,229,0.15)">
-          <div class="flex-row gap-sm">
-            <span class="material-icons-outlined text-primary" style="font-size:20px">open_in_new</span>
-            <div class="body-sm text-muted">The Admin Dashboard opens in a separate browser tab for a full desktop experience.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ════════════════════════════════════════
-         CITIZEN LOGIN
-    ════════════════════════════════════════ -->
-    <div class="screen" id="screen-citizen-login">
-      <div class="login-bg">
-        <div class="particle" style="left:10%;top:20%"></div>
-        <div class="particle" style="left:80%;top:30%"></div>
-        <div class="particle" style="left:50%;top:70%"></div>
-      </div>
-
-      <div class="login-top-bar login-anim-1">
-        <span class="material-icons-outlined text-muted pointer" onclick="navigateTo('screen-role-select')">arrow_back</span>
-        <div style="font-weight:800;font-family:var(--font-heading);font-size:15px">Citizen Login</div>
-        <button class="btn-ghost" onclick="toggleTheme()" style="padding:6px;border-radius:50%;border:none;cursor:pointer;background:var(--primary-light)">
-          <span class="material-icons-outlined" style="font-size:18px;color:var(--primary)">dark_mode</span>
-        </button>
-      </div>
-
-      <div class="content-pad" style="position:relative;z-index:1">
-        <div class="login-header">
-          <div class="icon-circle login-anim-1"><span class="material-icons-outlined">location_city</span></div>
-          <h1 class="title-xl mb-2 login-anim-2">Welcome, Citizen</h1>
-          <p class="body-md text-muted login-anim-3">Report road issues and track<br>repairs in real-time.</p>
-        </div>
-
-        <div class="login-anim-3">
-          <button class="social-btn" onclick="loginWithGoogle('citizen')">
-            <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            Continue with Google
-          </button>
-        </div>
-
-        <div class="divider login-anim-4"><span>or sign in with email</span></div>
-
-        <div class="login-anim-4">
           <div class="input-group">
-            <label class="input-label">Email Address</label>
+            <label class="input-label">Admin Email</label>
             <div class="input-wrapper">
               <span class="material-icons-outlined input-icon">alternate_email</span>
-              <input type="email" id="citizen-email" class="input-field" placeholder="name@example.com">
+              <input type="email" id="admin-login-email" class="input-field" placeholder="admin@demo.com">
             </div>
           </div>
           <div class="input-group" style="margin-bottom:20px">
-            <label class="input-label flex-between">
-              Password
-              <span class="text-primary" style="text-transform:none;font-weight:600;font-size:13px;cursor:pointer">Forgot?</span>
-            </label>
+            <label class="input-label">Password</label>
             <div class="input-wrapper">
               <span class="material-icons-outlined input-icon">lock_outline</span>
-              <input type="password" id="citizen-password" class="input-field" placeholder="••••••••">
-              <span class="material-icons-outlined input-action" id="citizen-toggle-pwd" onclick="togglePassword('citizen-password','citizen-toggle-pwd')">visibility</span>
+              <input type="password" id="admin-login-pwd" class="input-field" placeholder="••••••••">
+              <span class="material-icons-outlined input-action" id="admin-toggle-pwd"
+                onclick="togglePassword('admin-login-pwd','admin-toggle-pwd')">visibility</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-full mb-4" id="admin-login-btn" onclick="loginAdmin()">
+            <span class="btn-text">Enter Admin Dashboard</span>
+            <span class="material-icons-outlined" style="font-size:18px">arrow_forward</span>
+          </button>
+
+          <!-- Admin demo account -->
+          <div class="demo-accounts-section">
+            <div class="demo-section-label">
+              <div class="demo-line"></div><span>DEMO ACCOUNT</span>
+              <div class="demo-line"></div>
+            </div>
+            <div class="demo-account-card" style="border-color:rgba(44,123,229,0.25)" onclick="fillAdminDemo()">
+              <div class="demo-avatar-circle"><span class="material-icons-outlined"
+                  style="font-size:20px">admin_panel_settings</span></div>
+              <div class="flex-1">
+                <div class="title-sm">Priya Mehta — Super Admin</div>
+                <div class="body-xs text-muted">admin@demo.com</div>
+              </div>
+              <span class="material-icons-outlined text-muted" style="font-size:18px">login</span>
+            </div>
+          </div>
+
+          <div class="card mt-4" style="background:rgba(44,123,229,0.04);border-color:rgba(44,123,229,0.15)">
+            <div class="flex-row gap-sm">
+              <span class="material-icons-outlined text-primary" style="font-size:20px">open_in_new</span>
+              <div class="body-sm text-muted">The Admin Dashboard opens in a separate browser tab for a full desktop
+                experience.</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="login-anim-5">
-          <button class="btn btn-primary btn-full mb-4" id="citizen-login-btn" onclick="loginCitizen()">
-            <span class="btn-text">Login as Citizen</span>
-            <span class="material-icons-outlined" style="font-size:18px">arrow_forward</span>
+      <!-- ════════════════════════════════════════
+         CITIZEN LOGIN
+    ════════════════════════════════════════ -->
+      <div class="screen" id="screen-citizen-login">
+        <div class="login-bg">
+          <div class="particle" style="left:10%;top:20%"></div>
+          <div class="particle" style="left:80%;top:30%"></div>
+          <div class="particle" style="left:50%;top:70%"></div>
+        </div>
+
+        <div class="login-top-bar login-anim-1">
+          <span class="material-icons-outlined text-muted pointer"
+            onclick="navigateTo('screen-role-select')">arrow_back</span>
+          <div style="font-weight:800;font-family:var(--font-heading);font-size:15px">Citizen Login</div>
+          <button class="btn-ghost" onclick="toggleTheme()"
+            style="padding:6px;border-radius:50%;border:none;cursor:pointer;background:var(--primary-light)">
+            <span class="material-icons-outlined" style="font-size:18px;color:var(--primary)">dark_mode</span>
           </button>
         </div>
 
-        <div class="login-anim-5 demo-accounts-section">
-          <div class="demo-section-label">
-            <div class="demo-line"></div><span>DEMO ACCOUNTS</span><div class="demo-line"></div>
+        <div class="content-pad" style="position:relative;z-index:1">
+          <div class="login-header">
+            <div class="icon-circle login-anim-1"><span class="material-icons-outlined">location_city</span></div>
+            <h1 class="title-xl mb-2 login-anim-2">Welcome, Citizen</h1>
+            <p class="body-md text-muted login-anim-3">Report road issues and track<br>repairs in real-time.</p>
           </div>
-          <div id="citizen-demo-list"></div>
+
+          <div class="login-anim-3">
+            <button class="social-btn" onclick="loginWithGoogle('citizen')">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  fill="#4285F4" />
+                <path
+                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  fill="#34A853" />
+                <path
+                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  fill="#FBBC05" />
+                <path
+                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  fill="#EA4335" />
+              </svg>
+              Continue with Google
+            </button>
+          </div>
+
+          <div class="divider login-anim-4"><span>or sign in with email</span></div>
+
+          <div class="login-anim-4">
+            <div class="input-group">
+              <label class="input-label">Email Address</label>
+              <div class="input-wrapper">
+                <span class="material-icons-outlined input-icon">alternate_email</span>
+                <input type="email" id="citizen-email" class="input-field" placeholder="name@example.com">
+              </div>
+            </div>
+            <div class="input-group" style="margin-bottom:20px">
+              <label class="input-label flex-between">
+                Password
+                <span class="text-primary"
+                  style="text-transform:none;font-weight:600;font-size:13px;cursor:pointer">Forgot?</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="material-icons-outlined input-icon">lock_outline</span>
+                <input type="password" id="citizen-password" class="input-field" placeholder="••••••••">
+                <span class="material-icons-outlined input-action" id="citizen-toggle-pwd"
+                  onclick="togglePassword('citizen-password','citizen-toggle-pwd')">visibility</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="login-anim-5">
+            <button class="btn btn-primary btn-full mb-4" id="citizen-login-btn" onclick="loginCitizen()">
+              <span class="btn-text">Login as Citizen</span>
+              <span class="material-icons-outlined" style="font-size:18px">arrow_forward</span>
+            </button>
+          </div>
+
+          <div class="login-anim-5 demo-accounts-section">
+            <div class="demo-section-label">
+              <div class="demo-line"></div><span>DEMO ACCOUNTS</span>
+              <div class="demo-line"></div>
+            </div>
+            <div id="citizen-demo-list"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ════════════════════════════════════════
+      <!-- ════════════════════════════════════════
          WORKER LOGIN
     ════════════════════════════════════════ -->
-    <div class="screen" id="screen-worker-login">
-      <div class="login-top-bar login-anim-1">
-        <span class="material-icons-outlined text-muted pointer" onclick="navigateTo('screen-role-select')">arrow_back</span>
-        <div style="font-weight:800;font-family:var(--font-heading);font-size:15px">Worker Login</div>
-        <div style="width:24px"></div>
-      </div>
-
-      <div class="content-pad">
-        <div style="margin-bottom:24px">
-          <div class="icon-circle login-anim-1" style="background:linear-gradient(135deg,#E0A64C,#C8851A);box-shadow:0 8px 20px rgba(224,166,76,0.4);margin-left:0">
-            <span class="material-icons-outlined">engineering</span>
-          </div>
-          <div class="body-xs text-muted mb-1 mt-3 login-anim-2">FIELD OPERATIONS</div>
-          <h1 class="title-xl mb-1 login-anim-2">Worker<br>Login Portal</h1>
-          <p class="body-md text-muted login-anim-3">Access your assigned tasks and field operations.</p>
+      <div class="screen" id="screen-worker-login">
+        <div class="login-top-bar login-anim-1">
+          <span class="material-icons-outlined text-muted pointer"
+            onclick="navigateTo('screen-role-select')">arrow_back</span>
+          <div style="font-weight:800;font-family:var(--font-heading);font-size:15px">Worker Login</div>
+          <div style="width:24px"></div>
         </div>
 
-        <div class="login-anim-3">
-          <div class="input-group">
-            <label class="input-label">Worker ID / Email</label>
-            <div class="input-wrapper">
-              <span class="material-icons-outlined input-icon">badge</span>
-              <input type="text" id="worker-email" class="input-field" placeholder="worker@example.com">
+        <div class="content-pad">
+          <div style="margin-bottom:24px">
+            <div class="icon-circle login-anim-1"
+              style="background:linear-gradient(135deg,#E0A64C,#C8851A);box-shadow:0 8px 20px rgba(224,166,76,0.4);margin-left:0">
+              <span class="material-icons-outlined">engineering</span>
+            </div>
+            <div class="body-xs text-muted mb-1 mt-3 login-anim-2">FIELD OPERATIONS</div>
+            <h1 class="title-xl mb-1 login-anim-2">Worker<br>Login Portal</h1>
+            <p class="body-md text-muted login-anim-3">Access your assigned tasks and field operations.</p>
+          </div>
+
+          <div class="login-anim-3">
+            <div class="input-group">
+              <label class="input-label">Worker ID / Email</label>
+              <div class="input-wrapper">
+                <span class="material-icons-outlined input-icon">badge</span>
+                <input type="text" id="worker-email" class="input-field" placeholder="worker@example.com">
+              </div>
+            </div>
+            <div class="input-group" style="margin-bottom:20px">
+              <label class="input-label flex-between">
+                Password
+                <span class="text-primary"
+                  style="text-transform:none;font-weight:600;font-size:13px;cursor:pointer">Forgot?</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="material-icons-outlined input-icon">lock_outline</span>
+                <input type="password" id="worker-password" class="input-field" placeholder="••••••••">
+                <span class="material-icons-outlined input-action" id="worker-toggle-pwd"
+                  onclick="togglePassword('worker-password','worker-toggle-pwd')">visibility</span>
+              </div>
             </div>
           </div>
-          <div class="input-group" style="margin-bottom:20px">
-            <label class="input-label flex-between">
-              Password
-              <span class="text-primary" style="text-transform:none;font-weight:600;font-size:13px;cursor:pointer">Forgot?</span>
-            </label>
-            <div class="input-wrapper">
-              <span class="material-icons-outlined input-icon">lock_outline</span>
-              <input type="password" id="worker-password" class="input-field" placeholder="••••••••">
-              <span class="material-icons-outlined input-action" id="worker-toggle-pwd" onclick="togglePassword('worker-password','worker-toggle-pwd')">visibility</span>
+
+          <div class="login-anim-4">
+            <button class="btn btn-full mb-4" id="worker-login-btn" onclick="loginWorker()"
+              style="background:linear-gradient(135deg,#E0A64C,#C8851A);color:#fff;box-shadow:0 8px 20px rgba(224,166,76,0.35)">
+              <span class="btn-text">Authenticate &amp; Enter</span>
+              <span class="material-icons-outlined" style="font-size:18px">arrow_forward</span>
+            </button>
+          </div>
+
+          <div class="login-anim-4 demo-accounts-section">
+            <div class="demo-section-label">
+              <div class="demo-line"></div><span>DEMO WORKERS</span>
+              <div class="demo-line"></div>
+            </div>
+            <div id="worker-demo-list"></div>
+          </div>
+
+          <div class="card login-anim-5 mt-4" style="background:rgba(230,55,87,0.04);border-color:rgba(230,55,87,0.1)">
+            <div class="flex-row gap-sm">
+              <span class="material-icons-outlined" style="color:var(--danger);font-size:20px">info</span>
+              <div class="body-sm text-muted">All activity is monitored. Check-in/out photos are mandatory for task
+                verification.</div>
             </div>
           </div>
         </div>
-
-        <div class="login-anim-4">
-          <button class="btn btn-full mb-4" id="worker-login-btn" onclick="loginWorker()"
-            style="background:linear-gradient(135deg,#E0A64C,#C8851A);color:#fff;box-shadow:0 8px 20px rgba(224,166,76,0.35)">
-            <span class="btn-text">Authenticate &amp; Enter</span>
-            <span class="material-icons-outlined" style="font-size:18px">arrow_forward</span>
-          </button>
-        </div>
-
-        <div class="login-anim-4 demo-accounts-section">
-          <div class="demo-section-label">
-            <div class="demo-line"></div><span>DEMO WORKERS</span><div class="demo-line"></div>
-          </div>
-          <div id="worker-demo-list"></div>
-        </div>
-
-        <div class="card login-anim-5 mt-4" style="background:rgba(230,55,87,0.04);border-color:rgba(230,55,87,0.1)">
-          <div class="flex-row gap-sm">
-            <span class="material-icons-outlined" style="color:var(--danger);font-size:20px">info</span>
-            <div class="body-sm text-muted">All activity is monitored. Check-in/out photos are mandatory for task verification.</div>
-          </div>
-        </div>
       </div>
-    </div>
 
-    <!-- ════════════════════════════════════════
+      <!-- ════════════════════════════════════════
          CITIZEN HOME
     ════════════════════════════════════════ -->
-    <div class="screen" id="screen-home">
-      <div class="header" id="home-header">
-        <div class="header-left">
-          <div class="app-icon"><span class="material-icons-outlined" style="font-size:18px">location_city</span></div>
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">UrbanFlow</span>
-        </div>
-        <div class="flex-row gap-sm">
-          <button class="btn-ghost" onclick="toggleTheme()" style="border:none;cursor:pointer;padding:6px;border-radius:50%;background:transparent">
-            <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">dark_mode</span>
-          </button>
-          <div class="user-avatar-circle" id="home-avatar" onclick="navigateTo('screen-profile')" style="cursor:pointer">RS</div>
-        </div>
-      </div>
-      <div class="content-pad">
-        <div class="body-xs text-muted mb-1">OVERVIEW</div>
-        <h1 class="title-lg mb-2" id="home-greeting">Good morning 👋</h1>
-        <div class="section-header">
-          <div class="live-dot"></div>
-          <span class="body-sm" style="font-weight:600">Live road monitoring active</span>
-        </div>
-        <div class="city-pulse-grid">
-          <div class="pulse-card-main">
-            <div class="flex-between mb-4">
-              <span class="material-icons-outlined text-primary" style="background:var(--primary-light);padding:8px;border-radius:10px">show_chart</span>
-              <span class="body-xs text-primary" style="font-weight:700;background:var(--primary-light);padding:4px 10px;border-radius:99px">+12% this week</span>
+      <div class="screen" id="screen-home">
+        <div class="header" id="home-header">
+          <div class="header-left">
+            <div class="app-icon"><span class="material-icons-outlined" style="font-size:18px">location_city</span>
             </div>
-            <div class="stat-num" id="home-total">0</div>
-            <div class="body-sm text-muted">Total Reports</div>
+            <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">UrbanFlow</span>
           </div>
-          <div class="pulse-card-mini">
-            <span class="material-icons-outlined text-tertiary mb-2">hourglass_top</span>
-            <div class="title-md" id="home-pending">0</div>
-            <div class="body-xs text-muted">PENDING</div>
-          </div>
-          <div class="pulse-card-mini">
-            <span class="material-icons-outlined text-success mb-2">check_circle_outline</span>
-            <div class="title-md" id="home-completed">0</div>
-            <div class="body-xs text-muted">RESOLVED</div>
+          <div class="flex-row gap-sm">
+            <button class="btn-ghost" onclick="toggleTheme()"
+              style="border:none;cursor:pointer;padding:6px;border-radius:50%;background:transparent">
+              <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">dark_mode</span>
+            </button>
+            <div class="user-avatar-circle" id="home-avatar" onclick="navigateTo('screen-profile')"
+              style="cursor:pointer">RS</div>
           </div>
         </div>
-        <div class="action-row">
-          <button class="btn btn-primary" onclick="startReportWizard()">
-            <span class="material-icons-outlined">add_a_photo</span>Report Issue
-          </button>
-          <button class="btn btn-outline" onclick="navigateTo('screen-heatmap')">
-            <span class="material-icons-outlined">map</span>View Map
-          </button>
-        </div>
-        <div class="section-title-row">
-          <h2 class="title-sm">My Recent Reports</h2>
-          <a href="#" class="body-xs text-primary" style="text-decoration:none;font-weight:700" onclick="navigateTo('screen-my-reports')">VIEW ALL</a>
-        </div>
-        <div id="home-reports-list">
-          <div class="list-card"><div class="skeleton skeleton-img"></div><div class="flex-col flex-1 gap-sm"><div class="skeleton skeleton-title" style="width:70%"></div><div class="skeleton skeleton-text" style="width:50%"></div></div></div>
+        <div class="content-pad">
+          <div class="body-xs text-muted mb-1">OVERVIEW</div>
+          <h1 class="title-lg mb-2" id="home-greeting">Good morning 👋</h1>
+          <div class="section-header">
+            <div class="live-dot"></div>
+            <span class="body-sm" style="font-weight:600">Live road monitoring active</span>
+          </div>
+          <div class="city-pulse-grid">
+            <div class="pulse-card-main">
+              <div class="flex-between mb-4">
+                <span class="material-icons-outlined text-primary"
+                  style="background:var(--primary-light);padding:8px;border-radius:10px">show_chart</span>
+                <span class="body-xs text-primary"
+                  style="font-weight:700;background:var(--primary-light);padding:4px 10px;border-radius:99px">+12% this
+                  week</span>
+              </div>
+              <div class="stat-num" id="home-total">0</div>
+              <div class="body-sm text-muted">Total Reports</div>
+            </div>
+            <div class="pulse-card-mini">
+              <span class="material-icons-outlined text-tertiary mb-2">hourglass_top</span>
+              <div class="title-md" id="home-pending">0</div>
+              <div class="body-xs text-muted">PENDING</div>
+            </div>
+            <div class="pulse-card-mini">
+              <span class="material-icons-outlined text-success mb-2">check_circle_outline</span>
+              <div class="title-md" id="home-completed">0</div>
+              <div class="body-xs text-muted">RESOLVED</div>
+            </div>
+          </div>
+          <div class="action-row">
+            <button class="btn btn-primary" onclick="startReportWizard()">
+              <span class="material-icons-outlined">add_a_photo</span>Report Issue
+            </button>
+            <button class="btn btn-outline" onclick="navigateTo('screen-heatmap')">
+              <span class="material-icons-outlined">map</span>View Map
+            </button>
+          </div>
+          <div class="section-title-row">
+            <h2 class="title-sm">My Recent Reports</h2>
+            <a href="#" class="body-xs text-primary" style="text-decoration:none;font-weight:700"
+              onclick="navigateTo('screen-my-reports')">VIEW ALL</a>
+          </div>
+          <div id="home-reports-list">
+            <div class="list-card">
+              <div class="skeleton skeleton-img"></div>
+              <div class="flex-col flex-1 gap-sm">
+                <div class="skeleton skeleton-title" style="width:70%"></div>
+                <div class="skeleton skeleton-text" style="width:50%"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- MY REPORTS -->
-    <div class="screen" id="screen-my-reports">
-      <div class="header">
-        <div class="header-left">
-          <span class="material-icons-outlined text-muted pointer" onclick="navigateTo('screen-home')">arrow_back</span>
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Reports</span>
+      <!-- MY REPORTS -->
+      <div class="screen" id="screen-my-reports">
+        <div class="header">
+          <div class="header-left">
+            <span class="material-icons-outlined text-muted pointer"
+              onclick="navigateTo('screen-home')">arrow_back</span>
+            <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Reports</span>
+          </div>
+        </div>
+        <div class="content-pad">
+          <div class="flex-row gap-sm mb-4" style="overflow-x:auto;padding-bottom:4px;flex-wrap:nowrap">
+            <div class="chip chip-info pointer"
+              style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer"
+              onclick="filterMyReports('all',this)">All</div>
+            <div class="chip chip-submitted pointer"
+              style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer"
+              onclick="filterMyReports('submitted',this)">Pending</div>
+            <div class="chip chip-assigned pointer"
+              style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer"
+              onclick="filterMyReports('assigned',this)">Assigned</div>
+            <div class="chip chip-completed pointer"
+              style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer"
+              onclick="filterMyReports('completed',this)">Completed</div>
+          </div>
+          <div id="my-reports-list"></div>
         </div>
       </div>
-      <div class="content-pad">
-        <div class="flex-row gap-sm mb-4" style="overflow-x:auto;padding-bottom:4px;flex-wrap:nowrap">
-          <div class="chip chip-info pointer" style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer" onclick="filterMyReports('all',this)">All</div>
-          <div class="chip chip-submitted pointer" style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer" onclick="filterMyReports('submitted',this)">Pending</div>
-          <div class="chip chip-assigned pointer" style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer" onclick="filterMyReports('assigned',this)">Assigned</div>
-          <div class="chip chip-completed pointer" style="white-space:nowrap;padding:6px 14px;font-size:11px;cursor:pointer" onclick="filterMyReports('completed',this)">Completed</div>
+
+      <!-- REPORT DETAIL -->
+      <div class="screen" id="screen-report-detail">
+        <div class="header">
+          <span class="material-icons-outlined text-muted pointer"
+            onclick="navigateTo('screen-my-reports')">arrow_back</span>
+          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Report Details</span>
+          <div style="width:24px"></div>
         </div>
-        <div id="my-reports-list"></div>
+        <div class="content-pad" id="report-detail-content"></div>
       </div>
-    </div>
 
-    <!-- REPORT DETAIL -->
-    <div class="screen" id="screen-report-detail">
-      <div class="header">
-        <span class="material-icons-outlined text-muted pointer" onclick="navigateTo('screen-my-reports')">arrow_back</span>
-        <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Report Details</span>
-        <div style="width:24px"></div>
-      </div>
-      <div class="content-pad" id="report-detail-content"></div>
-    </div>
-
-    <!-- ════════════════════════════════════════
+      <!-- ════════════════════════════════════════
          REPORT WIZARD (4-step)
     ════════════════════════════════════════ -->
-    <div class="screen" id="screen-report">
-      <div class="header">
-        <span class="material-icons-outlined text-muted pointer" id="report-back-btn" onclick="reportWizardBack()">arrow_back</span>
-        <span style="font-weight:800;font-family:var(--font-heading);font-size:15px" id="report-header-title">Step 1 — Photo</span>
-        <div style="width:24px"></div>
-      </div>
+      <div class="screen" id="screen-report">
+        <div class="header">
+          <span class="material-icons-outlined text-muted pointer" id="report-back-btn"
+            onclick="reportWizardBack()">arrow_back</span>
+          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px" id="report-header-title">Step 1 —
+            Photo</span>
+          <div style="width:24px"></div>
+        </div>
 
-      <!-- Progress Bar -->
-      <div class="wizard-bar" id="wizard-bar">
-        <div class="wizard-steps">
-          <div class="wstep wstep-active" id="wdot-1"><div class="wstep-dot"><span class="material-icons-outlined">photo_camera</span></div><div class="wstep-label">Photo</div></div>
-          <div class="wstep-line" id="wline-1"></div>
-          <div class="wstep" id="wdot-2"><div class="wstep-dot"><span class="material-icons-outlined">place</span></div><div class="wstep-label">Location</div></div>
-          <div class="wstep-line" id="wline-2"></div>
-          <div class="wstep" id="wdot-3"><div class="wstep-dot"><span class="material-icons-outlined">tune</span></div><div class="wstep-label">Details</div></div>
-          <div class="wstep-line" id="wline-3"></div>
-          <div class="wstep" id="wdot-4"><div class="wstep-dot"><span class="material-icons-outlined">task_alt</span></div><div class="wstep-label">Submit</div></div>
+        <!-- Progress Bar -->
+        <div class="wizard-bar" id="wizard-bar">
+          <div class="wizard-steps">
+            <div class="wstep wstep-active" id="wdot-1">
+              <div class="wstep-dot"><span class="material-icons-outlined">photo_camera</span></div>
+              <div class="wstep-label">Photo</div>
+            </div>
+            <div class="wstep-line" id="wline-1"></div>
+            <div class="wstep" id="wdot-2">
+              <div class="wstep-dot"><span class="material-icons-outlined">place</span></div>
+              <div class="wstep-label">Location</div>
+            </div>
+            <div class="wstep-line" id="wline-2"></div>
+            <div class="wstep" id="wdot-3">
+              <div class="wstep-dot"><span class="material-icons-outlined">tune</span></div>
+              <div class="wstep-label">Details</div>
+            </div>
+            <div class="wstep-line" id="wline-3"></div>
+            <div class="wstep" id="wdot-4">
+              <div class="wstep-dot"><span class="material-icons-outlined">task_alt</span></div>
+              <div class="wstep-label">Submit</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 1: Camera -->
+        <div class="rw-panel active" id="rwp-1">
+          <div class="content-pad">
+            <h2 class="title-lg mb-1">Capture the Issue</h2>
+            <p class="body-sm text-muted mb-4">Take a clear photo of the road damage so AI can analyze it automatically.
+            </p>
+
+            <div class="perm-card" id="cam-perm-card">
+              <div class="perm-card-inner">
+                <div class="perm-icon-wrap cam-glow"><span class="material-icons-outlined">photo_camera</span></div>
+                <div class="perm-info">
+                  <div class="title-md mb-1">Camera Access Required</div>
+                  <div class="body-sm text-muted">UrbanFlow needs your camera to capture road damage photos for AI
+                    analysis.</div>
+                </div>
+                <div class="perm-features">
+                  <div class="perm-feature"><span class="material-icons-outlined text-success"
+                      style="font-size:16px">check_circle</span><span class="body-xs">AI auto-detection</span></div>
+                  <div class="perm-feature"><span class="material-icons-outlined text-success"
+                      style="font-size:16px">check_circle</span><span class="body-xs">No photos stored without
+                      consent</span></div>
+                </div>
+                <button class="btn btn-primary btn-full" id="cam-allow-btn" onclick="requestCameraAccess()">
+                  <span class="material-icons-outlined">photo_camera</span>Allow Camera Access
+                </button>
+                <button class="btn btn-outline btn-full mt-2" onclick="skipCameraPermission()">
+                  <span class="material-icons-outlined">upload</span>Upload from Gallery Instead
+                </button>
+              </div>
+            </div>
+
+            <div id="cam-section" style="display:none">
+              <input type="file" id="report-img-input" accept="image/*" capture="environment" style="display:none"
+                onchange="handleReportImageCaptured(event)">
+              <div class="capture-box" id="cam-empty-state"
+                onclick="document.getElementById('report-img-input').click()">
+                <div class="capture-box-icon"><span class="material-icons-outlined">add_a_photo</span></div>
+                <div class="body-sm" style="font-weight:600">Tap to open camera</div>
+                <div class="body-xs text-muted mt-1">Point at the road damage and capture</div>
+              </div>
+              <div id="cam-preview-state" style="display:none">
+                <div class="img-preview-wrap">
+                  <img id="report-img-preview" alt="Captured"
+                    style="width:100%;border-radius:16px;max-height:260px;object-fit:cover;display:block">
+                  <div class="img-preview-overlay">
+                    <div class="chip chip-done" style="font-size:11px"><span class="material-icons-outlined"
+                        style="font-size:14px">check_circle</span>Photo Captured</div>
+                  </div>
+                </div>
+                <button class="btn btn-outline btn-full mt-3"
+                  onclick="document.getElementById('report-img-input').click()">
+                  <span class="material-icons-outlined">refresh</span>Retake Photo
+                </button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full mt-4" id="step1-next-btn" style="display:none"
+              onclick="gotoWizardStep(2)">
+              Next: Set Location<span class="material-icons-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: GPS -->
+        <div class="rw-panel" id="rwp-2">
+          <div class="content-pad">
+            <h2 class="title-lg mb-1">Pin the Location</h2>
+            <p class="body-sm text-muted mb-4">We need GPS coordinates to map this issue and dispatch a worker.</p>
+
+            <div class="perm-card" id="loc-perm-card">
+              <div class="perm-card-inner">
+                <div class="perm-icon-wrap loc-glow"><span class="material-icons-outlined">my_location</span></div>
+                <div class="perm-info">
+                  <div class="title-md mb-1">Location Access Required</div>
+                  <div class="body-sm text-muted">Allow GPS access to capture the precise location of this road issue.
+                  </div>
+                </div>
+                <div class="perm-features">
+                  <div class="perm-feature"><span class="material-icons-outlined text-success"
+                      style="font-size:16px">check_circle</span><span class="body-xs">Precise ±5m GPS accuracy</span>
+                  </div>
+                  <div class="perm-feature"><span class="material-icons-outlined text-success"
+                      style="font-size:16px">check_circle</span><span class="body-xs">Used only for report
+                      mapping</span></div>
+                </div>
+                <button class="btn btn-primary btn-full" id="gps-allow-btn" onclick="requestGPSAccess()">
+                  <span class="material-icons-outlined">gps_fixed</span>Use My GPS Location
+                </button>
+                <button class="btn btn-outline btn-full mt-2" onclick="useDemoLocation()">
+                  <span class="material-icons-outlined">location_on</span>Use Demo Location
+                </button>
+              </div>
+            </div>
+
+            <div id="loc-section" style="display:none">
+              <div class="location-captured-card">
+                <div class="loc-pin-anim"><span class="material-icons-outlined">location_pin</span></div>
+                <div class="loc-info">
+                  <div class="body-xs text-muted mb-1">GPS COORDINATES</div>
+                  <div class="title-sm mb-1" id="loc-coords-display">—</div>
+                  <div class="body-xs text-muted mb-1">ADDRESS</div>
+                  <div class="body-sm" id="loc-address-display">Fetching…</div>
+                </div>
+                <div class="loc-accuracy-badge"><span class="material-icons-outlined"
+                    style="font-size:14px">gps_fixed</span><span>GPS Locked</span></div>
+                <button class="btn btn-outline btn-full mt-3" onclick="resetGPS()">
+                  <span class="material-icons-outlined">refresh</span>Re-fetch Location
+                </button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full mt-4" id="step2-next-btn" style="display:none"
+              onclick="gotoWizardStep(3)">
+              Next: Issue Details<span class="material-icons-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Details -->
+        <div class="rw-panel" id="rwp-3">
+          <div class="content-pad">
+            <h2 class="title-lg mb-1">Issue Details</h2>
+            <p class="body-sm text-muted mb-4">AI will auto-detect the category. Add any extra instructions for the
+              repair team.</p>
+
+            <div class="card mb-4" id="s3-ai-card" style="border-color:rgba(44,123,229,0.2)">
+              <div class="flex-between mb-3">
+                <div class="title-sm"><span class="material-icons-outlined text-primary"
+                    style="font-size:16px;vertical-align:text-top">auto_awesome</span> AI Analysis</div>
+                <div class="chip chip-pending" id="s3-ai-chip">SCANNING</div>
+              </div>
+              <div class="s3-ai-preview" id="s3-ai-preview-area">
+                <div class="ai-scan-line" id="s3-scan-line"></div>
+                <div class="ai-bounding-box" id="s3-bbox" style="display:none">
+                  <div class="ai-tag" id="s3-ai-tag">Detecting…</div>
+                </div>
+              </div>
+              <div class="flex-between mt-3">
+                <div class="body-xs text-muted">DETECTED ISSUE</div>
+                <div class="title-sm" id="s3-ai-label" style="color:var(--primary)">Analyzing…</div>
+              </div>
+              <div class="flex-between">
+                <div class="body-xs text-muted">CONFIDENCE</div>
+                <div class="body-xs" id="s3-ai-conf">—</div>
+              </div>
+              <div class="progress-bar-bg mt-2">
+                <div class="progress-bar-fill" id="s3-ai-bar"></div>
+              </div>
+            </div>
+
+            <div class="body-xs text-muted mb-2">CONFIRM CATEGORY</div>
+            <div class="category-grid" id="s3-cat-grid">
+              <div class="category-box active" data-cat="pothole" onclick="selectWizardCat(this)">
+                <div class="cat-icon"><span class="material-icons-outlined">trip_origin</span></div>
+                <div class="title-sm">Pothole</div>
+              </div>
+              <div class="category-box" data-cat="crack" onclick="selectWizardCat(this)">
+                <div class="cat-icon"><span class="material-icons-outlined">linear_scale</span></div>
+                <div class="title-sm">Road Crack</div>
+              </div>
+              <div class="category-box" data-cat="water_logging" onclick="selectWizardCat(this)">
+                <div class="cat-icon"><span class="material-icons-outlined">water_drop</span></div>
+                <div class="title-sm">Water Logging</div>
+              </div>
+              <div class="category-box" data-cat="garbage" onclick="selectWizardCat(this)">
+                <div class="cat-icon"><span class="material-icons-outlined">delete_outline</span></div>
+                <div class="title-sm">Garbage</div>
+              </div>
+            </div>
+
+            <div class="body-xs text-muted mb-2">SEVERITY LEVEL</div>
+            <div class="sev-row">
+              <div class="sev-btn" data-sev="low" onclick="selectSeverity(this)"><span
+                  class="material-icons-outlined">arrow_downward</span>Low</div>
+              <div class="sev-btn active" data-sev="medium" onclick="selectSeverity(this)"><span
+                  class="material-icons-outlined">remove</span>Medium</div>
+              <div class="sev-btn" data-sev="high" onclick="selectSeverity(this)"><span
+                  class="material-icons-outlined">arrow_upward</span>High</div>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label"><span class="material-icons-outlined" style="font-size:14px">notes</span>
+                Special Instructions</label>
+              <div class="input-wrapper">
+                <textarea id="s3-instructions" class="input-field" rows="4"
+                  placeholder="Describe the issue:&#10;• How severe is it?&#10;• Is traffic impacted?&#10;• Any safety hazards?"
+                  style="padding-left:16px;resize:none;min-height:110px;line-height:1.6"></textarea>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full" onclick="gotoWizardStep(4)">
+              Review &amp; Submit<span class="material-icons-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Review -->
+        <div class="rw-panel" id="rwp-4">
+          <div class="content-pad">
+            <h2 class="title-lg mb-1">Review Report</h2>
+            <p class="body-sm text-muted mb-4">Confirm everything looks right before submitting.</p>
+
+            <div class="review-card" id="report-review-card">
+              <img id="review-img" alt="Report"
+                style="width:100%;height:190px;object-fit:cover;border-radius:12px;margin-bottom:16px;display:none">
+              <div class="review-rows">
+                <div class="review-row">
+                  <div class="review-row-icon" style="background:rgba(230,55,87,0.1)"><span
+                      class="material-icons-outlined" style="color:var(--danger)">location_on</span></div>
+                  <div>
+                    <div class="body-xs text-muted">LOCATION</div>
+                    <div class="body-sm" id="review-location">—</div>
+                  </div>
+                </div>
+                <div class="review-row">
+                  <div class="review-row-icon" style="background:rgba(44,123,229,0.1)"><span
+                      class="material-icons-outlined" style="color:var(--primary)">auto_awesome</span></div>
+                  <div>
+                    <div class="body-xs text-muted">AI DETECTED</div>
+                    <div class="body-sm" id="review-ai">—</div>
+                  </div>
+                </div>
+                <div class="review-row">
+                  <div class="review-row-icon" style="background:rgba(224,166,76,0.1)"><span
+                      class="material-icons-outlined" style="color:var(--tertiary)">category</span></div>
+                  <div>
+                    <div class="body-xs text-muted">CATEGORY &amp; SEVERITY</div>
+                    <div class="body-sm" id="review-cat-sev">—</div>
+                  </div>
+                </div>
+                <div class="review-row" id="review-instr-row" style="display:none">
+                  <div class="review-row-icon"><span class="material-icons-outlined"
+                      style="color:var(--text-muted)">notes</span></div>
+                  <div>
+                    <div class="body-xs text-muted">INSTRUCTIONS</div>
+                    <div class="body-sm" id="review-instructions">—</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="smart-assign-banner hidden" id="smart-assign-banner">
+              <div class="sa-icon"><span class="material-icons-outlined">auto_awesome</span></div>
+              <div>
+                <div class="title-sm mb-1">⚡ Smart Assignment Active</div>
+                <div class="body-xs" id="smart-assign-text">Checking nearby workers…</div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full mt-4" id="final-submit-btn" onclick="finalSubmitReport()">
+              <span class="btn-text">Submit Report</span>
+              <span class="material-icons-outlined" style="font-size:18px">send</span>
+            </button>
+            <div class="text-center body-xs text-muted mt-3">By submitting you confirm this information is accurate.
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Step 1: Camera -->
-      <div class="rw-panel active" id="rwp-1">
-        <div class="content-pad">
-          <h2 class="title-lg mb-1">Capture the Issue</h2>
-          <p class="body-sm text-muted mb-4">Take a clear photo of the road damage so AI can analyze it automatically.</p>
-
-          <div class="perm-card" id="cam-perm-card">
-            <div class="perm-card-inner">
-              <div class="perm-icon-wrap cam-glow"><span class="material-icons-outlined">photo_camera</span></div>
-              <div class="perm-info">
-                <div class="title-md mb-1">Camera Access Required</div>
-                <div class="body-sm text-muted">UrbanFlow needs your camera to capture road damage photos for AI analysis.</div>
-              </div>
-              <div class="perm-features">
-                <div class="perm-feature"><span class="material-icons-outlined text-success" style="font-size:16px">check_circle</span><span class="body-xs">AI auto-detection</span></div>
-                <div class="perm-feature"><span class="material-icons-outlined text-success" style="font-size:16px">check_circle</span><span class="body-xs">No photos stored without consent</span></div>
-              </div>
-              <button class="btn btn-primary btn-full" id="cam-allow-btn" onclick="requestCameraAccess()">
-                <span class="material-icons-outlined">photo_camera</span>Allow Camera Access
-              </button>
-              <button class="btn btn-outline btn-full mt-2" onclick="skipCameraPermission()">
-                <span class="material-icons-outlined">upload</span>Upload from Gallery Instead
-              </button>
-            </div>
+      <!-- HEATMAP -->
+      <div class="screen" id="screen-heatmap" style="padding:0">
+        <div class="header"
+          style="background:transparent;position:absolute;z-index:20;width:100%;backdrop-filter:none;border:none">
+          <div class="header-left">
+            <span
+              style="font-weight:800;font-family:var(--font-heading);font-size:15px;background:rgba(255,255,255,0.9);padding:4px 10px;border-radius:20px;box-shadow:var(--shadow-sm)">Live
+              Map</span>
           </div>
-
-          <div id="cam-section" style="display:none">
-            <input type="file" id="report-img-input" accept="image/*" capture="environment" style="display:none" onchange="handleReportImageCaptured(event)">
-            <div class="capture-box" id="cam-empty-state" onclick="document.getElementById('report-img-input').click()">
-              <div class="capture-box-icon"><span class="material-icons-outlined">add_a_photo</span></div>
-              <div class="body-sm" style="font-weight:600">Tap to open camera</div>
-              <div class="body-xs text-muted mt-1">Point at the road damage and capture</div>
-            </div>
-            <div id="cam-preview-state" style="display:none">
-              <div class="img-preview-wrap">
-                <img id="report-img-preview" alt="Captured" style="width:100%;border-radius:16px;max-height:260px;object-fit:cover;display:block">
-                <div class="img-preview-overlay"><div class="chip chip-done" style="font-size:11px"><span class="material-icons-outlined" style="font-size:14px">check_circle</span>Photo Captured</div></div>
-              </div>
-              <button class="btn btn-outline btn-full mt-3" onclick="document.getElementById('report-img-input').click()">
-                <span class="material-icons-outlined">refresh</span>Retake Photo
-              </button>
-            </div>
-          </div>
-
-          <button class="btn btn-primary btn-full mt-4" id="step1-next-btn" style="display:none" onclick="gotoWizardStep(2)">
-            Next: Set Location<span class="material-icons-outlined">arrow_forward</span>
+          <button class="btn btn-outline"
+            style="padding:8px;background:rgba(255,255,255,0.9);border-radius:50%;width:40px;height:40px;box-shadow:var(--shadow-sm)"
+            onclick="centerMap()">
+            <span class="material-icons-outlined" style="margin:0;font-size:20px">my_location</span>
           </button>
         </div>
+        <div id="citizen-leaflet-map" style="position:absolute;inset:0;z-index:1"></div>
       </div>
 
-      <!-- Step 2: GPS -->
-      <div class="rw-panel" id="rwp-2">
+      <!-- SUPPORT -->
+      <div class="screen" id="screen-support">
+        <div class="header">
+          <div class="header-left">
+            <div class="app-icon"><span class="material-icons-outlined" style="font-size:18px">location_city</span>
+            </div>
+            <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Help Center</span>
+          </div>
+        </div>
         <div class="content-pad">
-          <h2 class="title-lg mb-1">Pin the Location</h2>
-          <p class="body-sm text-muted mb-4">We need GPS coordinates to map this issue and dispatch a worker.</p>
-
-          <div class="perm-card" id="loc-perm-card">
-            <div class="perm-card-inner">
-              <div class="perm-icon-wrap loc-glow"><span class="material-icons-outlined">my_location</span></div>
-              <div class="perm-info">
-                <div class="title-md mb-1">Location Access Required</div>
-                <div class="body-sm text-muted">Allow GPS access to capture the precise location of this road issue.</div>
-              </div>
-              <div class="perm-features">
-                <div class="perm-feature"><span class="material-icons-outlined text-success" style="font-size:16px">check_circle</span><span class="body-xs">Precise ±5m GPS accuracy</span></div>
-                <div class="perm-feature"><span class="material-icons-outlined text-success" style="font-size:16px">check_circle</span><span class="body-xs">Used only for report mapping</span></div>
-              </div>
-              <button class="btn btn-primary btn-full" id="gps-allow-btn" onclick="requestGPSAccess()">
-                <span class="material-icons-outlined">gps_fixed</span>Use My GPS Location
-              </button>
-              <button class="btn btn-outline btn-full mt-2" onclick="useDemoLocation()">
-                <span class="material-icons-outlined">location_on</span>Use Demo Location
-              </button>
+          <h1 class="title-lg mb-4">Help Center</h1>
+          <div class="accordion-item">
+            <div class="accordion-header"><span class="body-md">How accurate is the AI road detection?</span><span
+                class="material-icons-outlined text-muted">expand_more</span></div>
+            <div class="accordion-body">Our YOLOv8 AI model achieves 90%+ accuracy. Results improve with better image
+              quality and lighting.</div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header"><span class="body-md">What is Smart Assignment?</span><span
+                class="material-icons-outlined text-muted">expand_more</span></div>
+            <div class="accordion-body">When you submit a report, the system checks if a worker recently completed a
+              task within 500m. If so, they are auto-assigned to your report too — saving time and improving efficiency.
             </div>
           </div>
-
-          <div id="loc-section" style="display:none">
-            <div class="location-captured-card">
-              <div class="loc-pin-anim"><span class="material-icons-outlined">location_pin</span></div>
-              <div class="loc-info">
-                <div class="body-xs text-muted mb-1">GPS COORDINATES</div>
-                <div class="title-sm mb-1" id="loc-coords-display">—</div>
-                <div class="body-xs text-muted mb-1">ADDRESS</div>
-                <div class="body-sm" id="loc-address-display">Fetching…</div>
-              </div>
-              <div class="loc-accuracy-badge"><span class="material-icons-outlined" style="font-size:14px">gps_fixed</span><span>GPS Locked</span></div>
-              <button class="btn btn-outline btn-full mt-3" onclick="resetGPS()">
-                <span class="material-icons-outlined">refresh</span>Re-fetch Location
-              </button>
-            </div>
+          <div class="accordion-item">
+            <div class="accordion-header"><span class="body-md">How long does repair take?</span><span
+                class="material-icons-outlined text-muted">expand_more</span></div>
+            <div class="accordion-body">Critical issues are prioritised within 24–48 hours. Minor issues may take up to
+              7 days.</div>
           </div>
+        </div>
+      </div>
 
-          <button class="btn btn-primary btn-full mt-4" id="step2-next-btn" style="display:none" onclick="gotoWizardStep(3)">
-            Next: Issue Details<span class="material-icons-outlined">arrow_forward</span>
+      <!-- CITIZEN PROFILE -->
+      <div class="screen" id="screen-profile">
+        <div class="header">
+          <div class="header-left">
+            <div class="app-icon"><span class="material-icons-outlined" style="font-size:18px">location_city</span>
+            </div>
+            <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Profile</span>
+          </div>
+          <button class="btn-ghost" onclick="toggleTheme()" style="border:none;background:transparent;cursor:pointer">
+            <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">dark_mode</span>
           </button>
         </div>
-      </div>
-
-      <!-- Step 3: Details -->
-      <div class="rw-panel" id="rwp-3">
-        <div class="content-pad">
-          <h2 class="title-lg mb-1">Issue Details</h2>
-          <p class="body-sm text-muted mb-4">AI will auto-detect the category. Add any extra instructions for the repair team.</p>
-
-          <div class="card mb-4" id="s3-ai-card" style="border-color:rgba(44,123,229,0.2)">
-            <div class="flex-between mb-3">
-              <div class="title-sm"><span class="material-icons-outlined text-primary" style="font-size:16px;vertical-align:text-top">auto_awesome</span> AI Analysis</div>
-              <div class="chip chip-pending" id="s3-ai-chip">SCANNING</div>
-            </div>
-            <div class="s3-ai-preview" id="s3-ai-preview-area">
-              <div class="ai-scan-line" id="s3-scan-line"></div>
-              <div class="ai-bounding-box" id="s3-bbox" style="display:none"><div class="ai-tag" id="s3-ai-tag">Detecting…</div></div>
-            </div>
-            <div class="flex-between mt-3">
-              <div class="body-xs text-muted">DETECTED ISSUE</div>
-              <div class="title-sm" id="s3-ai-label" style="color:var(--primary)">Analyzing…</div>
-            </div>
-            <div class="flex-between">
-              <div class="body-xs text-muted">CONFIDENCE</div>
-              <div class="body-xs" id="s3-ai-conf">—</div>
-            </div>
-            <div class="progress-bar-bg mt-2"><div class="progress-bar-fill" id="s3-ai-bar"></div></div>
-          </div>
-
-          <div class="body-xs text-muted mb-2">CONFIRM CATEGORY</div>
-          <div class="category-grid" id="s3-cat-grid">
-            <div class="category-box active" data-cat="pothole" onclick="selectWizardCat(this)"><div class="cat-icon"><span class="material-icons-outlined">trip_origin</span></div><div class="title-sm">Pothole</div></div>
-            <div class="category-box" data-cat="crack" onclick="selectWizardCat(this)"><div class="cat-icon"><span class="material-icons-outlined">linear_scale</span></div><div class="title-sm">Road Crack</div></div>
-            <div class="category-box" data-cat="water_logging" onclick="selectWizardCat(this)"><div class="cat-icon"><span class="material-icons-outlined">water_drop</span></div><div class="title-sm">Water Logging</div></div>
-            <div class="category-box" data-cat="garbage" onclick="selectWizardCat(this)"><div class="cat-icon"><span class="material-icons-outlined">delete_outline</span></div><div class="title-sm">Garbage</div></div>
-          </div>
-
-          <div class="body-xs text-muted mb-2">SEVERITY LEVEL</div>
-          <div class="sev-row">
-            <div class="sev-btn" data-sev="low" onclick="selectSeverity(this)"><span class="material-icons-outlined">arrow_downward</span>Low</div>
-            <div class="sev-btn active" data-sev="medium" onclick="selectSeverity(this)"><span class="material-icons-outlined">remove</span>Medium</div>
-            <div class="sev-btn" data-sev="high" onclick="selectSeverity(this)"><span class="material-icons-outlined">arrow_upward</span>High</div>
-          </div>
-
-          <div class="input-group">
-            <label class="input-label"><span class="material-icons-outlined" style="font-size:14px">notes</span> Special Instructions</label>
-            <div class="input-wrapper">
-              <textarea id="s3-instructions" class="input-field" rows="4"
-                placeholder="Describe the issue:&#10;• How severe is it?&#10;• Is traffic impacted?&#10;• Any safety hazards?"
-                style="padding-left:16px;resize:none;min-height:110px;line-height:1.6"></textarea>
+        <div class="content-pad text-center">
+          <div style="display:inline-block;position:relative;margin:20px auto 16px">
+            <div class="user-avatar-circle-lg" id="profile-avatar-big">RS</div>
+            <div
+              style="position:absolute;bottom:0;right:-2px;background:var(--success);width:22px;height:22px;border-radius:50%;border:3px solid var(--background);display:flex;align-items:center;justify-content:center">
+              <span class="material-icons-outlined" style="font-size:12px;color:#fff">check</span>
             </div>
           </div>
-
-          <button class="btn btn-primary btn-full" onclick="gotoWizardStep(4)">
-            Review &amp; Submit<span class="material-icons-outlined">arrow_forward</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Step 4: Review -->
-      <div class="rw-panel" id="rwp-4">
-        <div class="content-pad">
-          <h2 class="title-lg mb-1">Review Report</h2>
-          <p class="body-sm text-muted mb-4">Confirm everything looks right before submitting.</p>
-
-          <div class="review-card" id="report-review-card">
-            <img id="review-img" alt="Report" style="width:100%;height:190px;object-fit:cover;border-radius:12px;margin-bottom:16px;display:none">
-            <div class="review-rows">
-              <div class="review-row"><div class="review-row-icon" style="background:rgba(230,55,87,0.1)"><span class="material-icons-outlined" style="color:var(--danger)">location_on</span></div><div><div class="body-xs text-muted">LOCATION</div><div class="body-sm" id="review-location">—</div></div></div>
-              <div class="review-row"><div class="review-row-icon" style="background:rgba(44,123,229,0.1)"><span class="material-icons-outlined" style="color:var(--primary)">auto_awesome</span></div><div><div class="body-xs text-muted">AI DETECTED</div><div class="body-sm" id="review-ai">—</div></div></div>
-              <div class="review-row"><div class="review-row-icon" style="background:rgba(224,166,76,0.1)"><span class="material-icons-outlined" style="color:var(--tertiary)">category</span></div><div><div class="body-xs text-muted">CATEGORY &amp; SEVERITY</div><div class="body-sm" id="review-cat-sev">—</div></div></div>
-              <div class="review-row" id="review-instr-row" style="display:none"><div class="review-row-icon"><span class="material-icons-outlined" style="color:var(--text-muted)">notes</span></div><div><div class="body-xs text-muted">INSTRUCTIONS</div><div class="body-sm" id="review-instructions">—</div></div></div>
+          <h1 class="title-lg mb-1" id="profile-name">Rahul Sharma</h1>
+          <p class="body-sm text-muted mb-1" id="profile-email">citizen@demo.com</p>
+          <p class="body-xs text-muted mb-1" id="profile-phone">—</p>
+          <div class="chip chip-info" style="margin:0 auto 20px">CITIZEN</div>
+          <div class="action-row">
+            <div class="card flex-1 mb-0" style="padding:16px;text-align:center">
+              <div class="title-md text-primary" id="profile-total-reports">0</div>
+              <div class="body-xs text-muted">REPORTS</div>
+            </div>
+            <div class="card flex-1 mb-0" style="padding:16px;text-align:center">
+              <div class="title-md text-success" id="profile-resolved">0</div>
+              <div class="body-xs text-muted">RESOLVED</div>
+            </div>
+            <div class="card flex-1 mb-0" style="padding:16px;text-align:center">
+              <div class="title-md text-tertiary" id="profile-pending-count">0</div>
+              <div class="body-xs text-muted">PENDING</div>
             </div>
           </div>
-
-          <div class="smart-assign-banner hidden" id="smart-assign-banner">
-            <div class="sa-icon"><span class="material-icons-outlined">auto_awesome</span></div>
-            <div><div class="title-sm mb-1">⚡ Smart Assignment Active</div><div class="body-xs" id="smart-assign-text">Checking nearby workers…</div></div>
+        </div>
+        <div style="padding:0 24px">
+          <div class="body-xs text-muted mb-3">PREFERENCES</div>
+          <div class="settings-list">
+            <div class="settings-item">
+              <div class="settings-icon"><span class="material-icons-outlined">notifications</span></div>
+              <div class="flex-1">
+                <div class="title-sm">Push Notifications</div>
+                <div class="body-xs text-muted">Status updates on reports</div>
+              </div>
+              <div class="toggle active">
+                <div class="toggle-knob"></div>
+              </div>
+            </div>
+            <div class="settings-item" onclick="toggleTheme()">
+              <div class="settings-icon"><span class="material-icons-outlined">dark_mode</span></div>
+              <div class="flex-1">
+                <div class="title-sm">Dark Mode</div>
+              </div>
+              <div class="toggle" id="profile-dark-toggle">
+                <div class="toggle-knob"></div>
+              </div>
+            </div>
           </div>
-
-          <button class="btn btn-primary btn-full mt-4" id="final-submit-btn" onclick="finalSubmitReport()">
-            <span class="btn-text">Submit Report</span>
-            <span class="material-icons-outlined" style="font-size:18px">send</span>
-          </button>
-          <div class="text-center body-xs text-muted mt-3">By submitting you confirm this information is accurate.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- HEATMAP -->
-    <div class="screen" id="screen-heatmap" style="padding:0">
-      <div class="header" style="background:transparent;position:absolute;z-index:20;width:100%;backdrop-filter:none;border:none">
-        <div class="header-left">
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px;background:rgba(255,255,255,0.9);padding:4px 10px;border-radius:20px;box-shadow:var(--shadow-sm)">Live Map</span>
-        </div>
-        <button class="btn btn-outline" style="padding:8px;background:rgba(255,255,255,0.9);border-radius:50%;width:40px;height:40px;box-shadow:var(--shadow-sm)" onclick="centerMap()">
-          <span class="material-icons-outlined" style="margin:0;font-size:20px">my_location</span>
-        </button>
-      </div>
-      <div id="citizen-leaflet-map" style="position:absolute;inset:0;z-index:1"></div>
-    </div>
-
-    <!-- SUPPORT -->
-    <div class="screen" id="screen-support">
-      <div class="header">
-        <div class="header-left">
-          <div class="app-icon"><span class="material-icons-outlined" style="font-size:18px">location_city</span></div>
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Help Center</span>
-        </div>
-      </div>
-      <div class="content-pad">
-        <h1 class="title-lg mb-4">Help Center</h1>
-        <div class="accordion-item"><div class="accordion-header"><span class="body-md">How accurate is the AI road detection?</span><span class="material-icons-outlined text-muted">expand_more</span></div><div class="accordion-body">Our YOLOv8 AI model achieves 90%+ accuracy. Results improve with better image quality and lighting.</div></div>
-        <div class="accordion-item"><div class="accordion-header"><span class="body-md">What is Smart Assignment?</span><span class="material-icons-outlined text-muted">expand_more</span></div><div class="accordion-body">When you submit a report, the system checks if a worker recently completed a task within 500m. If so, they are auto-assigned to your report too — saving time and improving efficiency.</div></div>
-        <div class="accordion-item"><div class="accordion-header"><span class="body-md">How long does repair take?</span><span class="material-icons-outlined text-muted">expand_more</span></div><div class="accordion-body">Critical issues are prioritised within 24–48 hours. Minor issues may take up to 7 days.</div></div>
-      </div>
-    </div>
-
-    <!-- CITIZEN PROFILE -->
-    <div class="screen" id="screen-profile">
-      <div class="header">
-        <div class="header-left">
-          <div class="app-icon"><span class="material-icons-outlined" style="font-size:18px">location_city</span></div>
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Profile</span>
-        </div>
-        <button class="btn-ghost" onclick="toggleTheme()" style="border:none;background:transparent;cursor:pointer">
-          <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">dark_mode</span>
-        </button>
-      </div>
-      <div class="content-pad text-center">
-        <div style="display:inline-block;position:relative;margin:20px auto 16px">
-          <div class="user-avatar-circle-lg" id="profile-avatar-big">RS</div>
-          <div style="position:absolute;bottom:0;right:-2px;background:var(--success);width:22px;height:22px;border-radius:50%;border:3px solid var(--background);display:flex;align-items:center;justify-content:center">
-            <span class="material-icons-outlined" style="font-size:12px;color:#fff">check</span>
+          <div class="body-xs text-muted mb-3">ACCOUNT</div>
+          <div class="settings-list">
+            <div class="settings-item" onclick="navigateTo('screen-support')">
+              <div class="settings-icon"><span class="material-icons-outlined">help_outline</span></div>
+              <div class="title-sm flex-1">Help Center</div><span
+                class="material-icons-outlined text-muted">chevron_right</span>
+            </div>
+            <div class="settings-item danger" onclick="logout()">
+              <div class="settings-icon"><span class="material-icons-outlined">logout</span></div>
+              <div class="title-sm flex-1">Logout</div>
+            </div>
           </div>
-        </div>
-        <h1 class="title-lg mb-1" id="profile-name">Rahul Sharma</h1>
-        <p class="body-sm text-muted mb-1" id="profile-email">citizen@demo.com</p>
-        <p class="body-xs text-muted mb-1" id="profile-phone">—</p>
-        <div class="chip chip-info" style="margin:0 auto 20px">CITIZEN</div>
-        <div class="action-row">
-          <div class="card flex-1 mb-0" style="padding:16px;text-align:center"><div class="title-md text-primary" id="profile-total-reports">0</div><div class="body-xs text-muted">REPORTS</div></div>
-          <div class="card flex-1 mb-0" style="padding:16px;text-align:center"><div class="title-md text-success" id="profile-resolved">0</div><div class="body-xs text-muted">RESOLVED</div></div>
-          <div class="card flex-1 mb-0" style="padding:16px;text-align:center"><div class="title-md text-tertiary" id="profile-pending-count">0</div><div class="body-xs text-muted">PENDING</div></div>
+          <div class="text-center mt-4 mb-6 body-xs text-muted">VERSION 4.1.0 · UrbanFlow City Systems</div>
         </div>
       </div>
-      <div style="padding:0 24px">
-        <div class="body-xs text-muted mb-3">PREFERENCES</div>
-        <div class="settings-list">
-          <div class="settings-item"><div class="settings-icon"><span class="material-icons-outlined">notifications</span></div><div class="flex-1"><div class="title-sm">Push Notifications</div><div class="body-xs text-muted">Status updates on reports</div></div><div class="toggle active"><div class="toggle-knob"></div></div></div>
-          <div class="settings-item" onclick="toggleTheme()"><div class="settings-icon"><span class="material-icons-outlined">dark_mode</span></div><div class="flex-1"><div class="title-sm">Dark Mode</div></div><div class="toggle" id="profile-dark-toggle"><div class="toggle-knob"></div></div></div>
-        </div>
-        <div class="body-xs text-muted mb-3">ACCOUNT</div>
-        <div class="settings-list">
-          <div class="settings-item" onclick="navigateTo('screen-support')"><div class="settings-icon"><span class="material-icons-outlined">help_outline</span></div><div class="title-sm flex-1">Help Center</div><span class="material-icons-outlined text-muted">chevron_right</span></div>
-          <div class="settings-item danger" onclick="logout()"><div class="settings-icon"><span class="material-icons-outlined">logout</span></div><div class="title-sm flex-1">Logout</div></div>
-        </div>
-        <div class="text-center mt-4 mb-6 body-xs text-muted">VERSION 4.1.0 · UrbanFlow City Systems</div>
-      </div>
-    </div>
 
-    <!-- ════════════════════════════════════════
+      <!-- ════════════════════════════════════════
          WORKER TASKS DASHBOARD
     ════════════════════════════════════════ -->
-    <div class="screen" id="screen-worker-tasks">
-      <div class="header">
-        <div class="header-left">
-          <div class="app-icon" style="background:rgba(224,166,76,0.12);color:var(--tertiary)">
-            <span class="material-icons-outlined" style="font-size:18px">engineering</span>
+      <div class="screen" id="screen-worker-tasks">
+        <div class="header">
+          <div class="header-left">
+            <div class="app-icon" style="background:rgba(224,166,76,0.12);color:var(--tertiary)">
+              <span class="material-icons-outlined" style="font-size:18px">engineering</span>
+            </div>
+            <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Tasks</span>
           </div>
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Tasks</span>
+          <div class="user-avatar-circle" id="worker-header-avatar"
+            style="background:linear-gradient(135deg,#E0A64C,#C8851A)">AS</div>
         </div>
-        <div class="user-avatar-circle" id="worker-header-avatar" style="background:linear-gradient(135deg,#E0A64C,#C8851A)">AS</div>
-      </div>
-      <div class="content-pad">
-        <div class="flex-between mb-3">
-          <div>
-            <div class="body-xs text-muted">FIELD OPERATIONS</div>
-            <div class="title-sm mt-1" id="worker-name-display">Arjun Singh</div>
+        <div class="content-pad">
+          <div class="flex-between mb-3">
+            <div>
+              <div class="body-xs text-muted">FIELD OPERATIONS</div>
+              <div class="title-sm mt-1" id="worker-name-display">Arjun Singh</div>
+            </div>
+            <div class="chip" style="background:rgba(224,166,76,0.12);color:var(--tertiary);padding:6px 14px"
+              id="worker-zone-chip">Zone 1</div>
           </div>
-          <div class="chip" style="background:rgba(224,166,76,0.12);color:var(--tertiary);padding:6px 14px" id="worker-zone-chip">Zone 1</div>
-        </div>
 
-        <div class="action-row" style="margin-bottom:20px">
-          <div class="card flex-1 mb-0" style="padding:14px;text-align:center"><div class="title-md text-tertiary" id="wstat-active">0</div><div class="body-xs text-muted">ACTIVE</div></div>
-          <div class="card flex-1 mb-0" style="padding:14px;text-align:center"><div class="title-md text-success" id="wstat-done">0</div><div class="body-xs text-muted">DONE</div></div>
-          <div class="card flex-1 mb-0" style="padding:14px;text-align:center"><div class="title-md text-primary" id="wstat-score">95%</div><div class="body-xs text-muted">SCORE</div></div>
-        </div>
+          <div class="action-row" style="margin-bottom:20px">
+            <div class="card flex-1 mb-0" style="padding:14px;text-align:center">
+              <div class="title-md text-tertiary" id="wstat-active">0</div>
+              <div class="body-xs text-muted">ACTIVE</div>
+            </div>
+            <div class="card flex-1 mb-0" style="padding:14px;text-align:center">
+              <div class="title-md text-success" id="wstat-done">0</div>
+              <div class="body-xs text-muted">DONE</div>
+            </div>
+            <div class="card flex-1 mb-0" style="padding:14px;text-align:center">
+              <div class="title-md text-primary" id="wstat-score">95%</div>
+              <div class="body-xs text-muted">SCORE</div>
+            </div>
+          </div>
 
-        <div class="smart-assign-banner hidden" id="worker-smart-notif" style="margin-bottom:16px">
-          <div class="sa-icon"><span class="material-icons-outlined">auto_awesome</span></div>
-          <div><div class="title-sm mb-1">⚡ New Smart Assignment</div><div class="body-xs" id="worker-smart-text">A new task was assigned because you're familiar with this area</div></div>
-        </div>
+          <div class="smart-assign-banner hidden" id="worker-smart-notif" style="margin-bottom:16px">
+            <div class="sa-icon"><span class="material-icons-outlined">auto_awesome</span></div>
+            <div>
+              <div class="title-sm mb-1">⚡ New Smart Assignment</div>
+              <div class="body-xs" id="worker-smart-text">A new task was assigned because you're familiar with this area
+              </div>
+            </div>
+          </div>
 
-        <div class="body-xs text-muted mb-3">ASSIGNED TASKS</div>
-        <div id="worker-tasks-list"></div>
-      </div>
-    </div>
-
-    <!-- WORKER TASK ACTIVE -->
-    <div class="screen" id="screen-worker-task-active">
-      <div class="header">
-        <span class="material-icons-outlined text-muted pointer" onclick="navigateTo('screen-worker-tasks')">arrow_back</span>
-        <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Task Details</span>
-        <div style="width:24px"></div>
-      </div>
-      <div id="wta-content" style="overflow-y:auto;height:calc(100% - 60px - 60px);padding-bottom:80px"></div>
-    </div>
-
-    <!-- WORKER MAP -->
-    <div class="screen" id="screen-worker-map" style="padding:0">
-      <div class="header" style="background:transparent;position:absolute;z-index:20;width:100%;backdrop-filter:none;border:none">
-        <div class="header-left">
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px;background:rgba(255,255,255,0.95);padding:4px 10px;border-radius:20px;box-shadow:var(--shadow-sm)">Field Map</span>
-        </div>
-        <button onclick="navigateTo('screen-worker-tasks')" style="background:rgba(255,255,255,0.95);border:none;cursor:pointer;padding:8px;border-radius:50%;box-shadow:var(--shadow-sm)">
-          <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">arrow_back</span>
-        </button>
-      </div>
-      <div id="worker-leaflet-map" style="position:absolute;inset:0;z-index:1"></div>
-    </div>
-
-    <!-- WORKER ATTENDANCE -->
-    <div class="screen" id="screen-attendance">
-      <div class="header">
-        <div class="header-left">
-          <div class="app-icon" style="background:rgba(224,166,76,0.12);color:var(--tertiary)"><span class="material-icons-outlined" style="font-size:18px">engineering</span></div>
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Attendance</span>
+          <div class="body-xs text-muted mb-3">ASSIGNED TASKS</div>
+          <div id="worker-tasks-list"></div>
         </div>
       </div>
-      <div class="content-pad text-center">
-        <h1 class="title-lg mb-1 mt-2">Daily Check-In</h1>
-        <p class="body-sm text-muted mb-4">Log your shift attendance with GPS verification.</p>
-        <div style="width:220px;height:220px;background:var(--surface);border:2px solid var(--border);border-radius:24px;margin:0 auto 24px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--shadow-md)">
-          <div style="position:absolute;top:14px;left:14px;width:24px;height:24px;border-top:3px solid var(--primary);border-left:3px solid var(--primary)"></div>
-          <div style="position:absolute;top:14px;right:14px;width:24px;height:24px;border-top:3px solid var(--primary);border-right:3px solid var(--primary)"></div>
-          <div style="position:absolute;bottom:14px;left:14px;width:24px;height:24px;border-bottom:3px solid var(--primary);border-left:3px solid var(--primary)"></div>
-          <div style="position:absolute;bottom:14px;right:14px;width:24px;height:24px;border-bottom:3px solid var(--primary);border-right:3px solid var(--primary)"></div>
-          <div class="ai-scan-line" style="top:20%"></div>
-          <span class="material-icons-outlined text-muted" style="font-size:48px;opacity:0.3">qr_code_scanner</span>
-        </div>
-        <button class="btn btn-primary btn-full mb-4" onclick="markAttendance()">
-          <span class="material-icons-outlined">qr_code_scanner</span>Mark Attendance
-        </button>
-        <div class="card flex-row text-left mb-4" style="gap:14px">
-          <span class="material-icons-outlined text-success" style="font-size:28px">verified_user</span>
-          <div><div class="title-sm mb-1">Last Check-In</div><div class="body-xs text-muted" id="last-checkin">Today, 08:55 AM</div></div>
-        </div>
-      </div>
-    </div>
 
-    <!-- WORKER PROFILE -->
-    <div class="screen" id="screen-worker-profile">
-      <div class="header">
-        <div class="header-left">
-          <div class="app-icon" style="background:rgba(224,166,76,0.12);color:var(--tertiary)"><span class="material-icons-outlined" style="font-size:18px">engineering</span></div>
-          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Profile</span>
+      <!-- WORKER TASK ACTIVE -->
+      <div class="screen" id="screen-worker-task-active">
+        <div class="header">
+          <span class="material-icons-outlined text-muted pointer"
+            onclick="navigateTo('screen-worker-tasks')">arrow_back</span>
+          <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Task Details</span>
+          <div style="width:24px"></div>
         </div>
-        <button class="btn-ghost" onclick="toggleTheme()" style="border:none;background:transparent;cursor:pointer">
-          <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">dark_mode</span>
-        </button>
+        <div id="wta-content" style="overflow-y:auto;height:calc(100% - 60px - 60px);padding-bottom:80px"></div>
       </div>
 
-      <div style="padding:20px 24px;text-align:center">
-        <div style="display:inline-block;position:relative;margin-bottom:16px">
-          <div class="user-avatar-circle-lg" id="worker-profile-avatar" style="background:linear-gradient(135deg,#E0A64C,#C8851A)">AS</div>
-          <div style="position:absolute;bottom:0;right:-2px;background:var(--success);width:22px;height:22px;border-radius:50%;border:3px solid var(--background)"></div>
+      <!-- WORKER MAP -->
+      <div class="screen" id="screen-worker-map" style="padding:0">
+        <div class="header"
+          style="background:transparent;position:absolute;z-index:20;width:100%;backdrop-filter:none;border:none">
+          <div class="header-left">
+            <span
+              style="font-weight:800;font-family:var(--font-heading);font-size:15px;background:rgba(255,255,255,0.95);padding:4px 10px;border-radius:20px;box-shadow:var(--shadow-sm)">Field
+              Map</span>
+          </div>
+          <button onclick="navigateTo('screen-worker-tasks')"
+            style="background:rgba(255,255,255,0.95);border:none;cursor:pointer;padding:8px;border-radius:50%;box-shadow:var(--shadow-sm)">
+            <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">arrow_back</span>
+          </button>
         </div>
-        <h1 class="title-lg mb-1" id="worker-profile-name">Arjun Singh</h1>
-        <p class="body-xs text-muted mb-1" id="worker-profile-id">WORKER ID #W-001</p>
-        <p class="body-xs text-muted mb-3" id="worker-profile-zone">Zone 1 (North)</p>
-        <div class="chip" style="background:rgba(224,166,76,0.15);color:var(--tertiary);margin:0 auto 20px;display:inline-flex">FIELD WORKER</div>
+        <div id="worker-leaflet-map" style="position:absolute;inset:0;z-index:1"></div>
       </div>
 
-      <!-- Stats row -->
-      <div style="display:flex;gap:12px;padding:0 24px;margin-bottom:24px">
-        <div class="card flex-1 mb-0" style="padding:14px;text-align:center"><div class="title-md text-primary" id="wp-active">0</div><div class="body-xs text-muted">ACTIVE</div></div>
-        <div class="card flex-1 mb-0" style="padding:14px;text-align:center"><div class="title-md text-success" id="wp-done">0</div><div class="body-xs text-muted">DONE</div></div>
-        <div class="card flex-1 mb-0" style="padding:14px;text-align:center"><div class="title-md text-tertiary" id="wp-score">95%</div><div class="body-xs text-muted">SCORE</div></div>
+      <!-- WORKER ATTENDANCE -->
+      <div class="screen" id="screen-attendance">
+        <div class="header">
+          <div class="header-left">
+            <div class="app-icon" style="background:rgba(224,166,76,0.12);color:var(--tertiary)"><span
+                class="material-icons-outlined" style="font-size:18px">engineering</span></div>
+            <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">Attendance</span>
+          </div>
+        </div>
+        <div class="content-pad text-center">
+          <h1 class="title-lg mb-1 mt-2">Daily Check-In</h1>
+          <p class="body-sm text-muted mb-4">Log your shift attendance with GPS verification.</p>
+          <div
+            style="width:220px;height:220px;background:var(--surface);border:2px solid var(--border);border-radius:24px;margin:0 auto 24px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--shadow-md)">
+            <div
+              style="position:absolute;top:14px;left:14px;width:24px;height:24px;border-top:3px solid var(--primary);border-left:3px solid var(--primary)">
+            </div>
+            <div
+              style="position:absolute;top:14px;right:14px;width:24px;height:24px;border-top:3px solid var(--primary);border-right:3px solid var(--primary)">
+            </div>
+            <div
+              style="position:absolute;bottom:14px;left:14px;width:24px;height:24px;border-bottom:3px solid var(--primary);border-left:3px solid var(--primary)">
+            </div>
+            <div
+              style="position:absolute;bottom:14px;right:14px;width:24px;height:24px;border-bottom:3px solid var(--primary);border-right:3px solid var(--primary)">
+            </div>
+            <div class="ai-scan-line" style="top:20%"></div>
+            <span class="material-icons-outlined text-muted" style="font-size:48px;opacity:0.3">qr_code_scanner</span>
+          </div>
+          <button class="btn btn-primary btn-full mb-4" onclick="markAttendance()">
+            <span class="material-icons-outlined">qr_code_scanner</span>Mark Attendance
+          </button>
+          <div class="card flex-row text-left mb-4" style="gap:14px">
+            <span class="material-icons-outlined text-success" style="font-size:28px">verified_user</span>
+            <div>
+              <div class="title-sm mb-1">Last Check-In</div>
+              <div class="body-xs text-muted" id="last-checkin">Today, 08:55 AM</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Settings -->
-      <div style="padding:0 24px">
-        <div class="body-xs text-muted mb-3">ACCOUNT INFO</div>
-        <div class="settings-list">
-          <div class="settings-item" style="cursor:default"><div class="settings-icon"><span class="material-icons-outlined">business</span></div><div class="flex-1"><div class="title-sm">Department</div><div class="body-xs text-muted">Public Works Authority</div></div></div>
-          <div class="settings-item" style="cursor:default"><div class="settings-icon"><span class="material-icons-outlined">location_on</span></div><div class="flex-1"><div class="title-sm">Assigned Zone</div><div class="body-xs text-muted" id="wp-zone-text">North District</div></div></div>
-          <div class="settings-item" style="cursor:default"><div class="settings-icon"><span class="material-icons-outlined">phone</span></div><div class="flex-1"><div class="title-sm">Contact</div><div class="body-xs text-muted" id="wp-phone">—</div></div></div>
+      <!-- WORKER PROFILE -->
+      <div class="screen" id="screen-worker-profile">
+        <div class="header">
+          <div class="header-left">
+            <div class="app-icon" style="background:rgba(224,166,76,0.12);color:var(--tertiary)"><span
+                class="material-icons-outlined" style="font-size:18px">engineering</span></div>
+            <span style="font-weight:800;font-family:var(--font-heading);font-size:15px">My Profile</span>
+          </div>
+          <button class="btn-ghost" onclick="toggleTheme()" style="border:none;background:transparent;cursor:pointer">
+            <span class="material-icons-outlined" style="font-size:22px;color:var(--text-muted)">dark_mode</span>
+          </button>
         </div>
-        <div class="body-xs text-muted mb-3">PREFERENCES</div>
-        <div class="settings-list">
-          <div class="settings-item" onclick="toggleTheme()"><div class="settings-icon"><span class="material-icons-outlined">dark_mode</span></div><div class="flex-1"><div class="title-sm">Dark Mode</div></div><div class="toggle" id="worker-dark-toggle"><div class="toggle-knob"></div></div></div>
+
+        <div style="padding:20px 24px;text-align:center">
+          <div style="display:inline-block;position:relative;margin-bottom:16px">
+            <div class="user-avatar-circle-lg" id="worker-profile-avatar"
+              style="background:linear-gradient(135deg,#E0A64C,#C8851A)">AS</div>
+            <div
+              style="position:absolute;bottom:0;right:-2px;background:var(--success);width:22px;height:22px;border-radius:50%;border:3px solid var(--background)">
+            </div>
+          </div>
+          <h1 class="title-lg mb-1" id="worker-profile-name">Arjun Singh</h1>
+          <p class="body-xs text-muted mb-1" id="worker-profile-id">WORKER ID #W-001</p>
+          <p class="body-xs text-muted mb-3" id="worker-profile-zone">Zone 1 (North)</p>
+          <div class="chip"
+            style="background:rgba(224,166,76,0.15);color:var(--tertiary);margin:0 auto 20px;display:inline-flex">FIELD
+            WORKER</div>
         </div>
-        <div class="settings-list">
-          <div class="settings-item danger" onclick="logout()"><div class="settings-icon"><span class="material-icons-outlined">logout</span></div><div class="title-sm flex-1">Log out</div></div>
+
+        <!-- Stats row -->
+        <div style="display:flex;gap:12px;padding:0 24px;margin-bottom:24px">
+          <div class="card flex-1 mb-0" style="padding:14px;text-align:center">
+            <div class="title-md text-primary" id="wp-active">0</div>
+            <div class="body-xs text-muted">ACTIVE</div>
+          </div>
+          <div class="card flex-1 mb-0" style="padding:14px;text-align:center">
+            <div class="title-md text-success" id="wp-done">0</div>
+            <div class="body-xs text-muted">DONE</div>
+          </div>
+          <div class="card flex-1 mb-0" style="padding:14px;text-align:center">
+            <div class="title-md text-tertiary" id="wp-score">95%</div>
+            <div class="body-xs text-muted">SCORE</div>
+          </div>
         </div>
-        <div class="text-center mt-4 mb-6 body-xs text-muted">VERSION 4.1.0 · UrbanFlow City Systems</div>
+
+        <!-- Settings -->
+        <div style="padding:0 24px">
+          <div class="body-xs text-muted mb-3">ACCOUNT INFO</div>
+          <div class="settings-list">
+            <div class="settings-item" style="cursor:default">
+              <div class="settings-icon"><span class="material-icons-outlined">business</span></div>
+              <div class="flex-1">
+                <div class="title-sm">Department</div>
+                <div class="body-xs text-muted">Public Works Authority</div>
+              </div>
+            </div>
+            <div class="settings-item" style="cursor:default">
+              <div class="settings-icon"><span class="material-icons-outlined">location_on</span></div>
+              <div class="flex-1">
+                <div class="title-sm">Assigned Zone</div>
+                <div class="body-xs text-muted" id="wp-zone-text">North District</div>
+              </div>
+            </div>
+            <div class="settings-item" style="cursor:default">
+              <div class="settings-icon"><span class="material-icons-outlined">phone</span></div>
+              <div class="flex-1">
+                <div class="title-sm">Contact</div>
+                <div class="body-xs text-muted" id="wp-phone">—</div>
+              </div>
+            </div>
+          </div>
+          <div class="body-xs text-muted mb-3">PREFERENCES</div>
+          <div class="settings-list">
+            <div class="settings-item" onclick="toggleTheme()">
+              <div class="settings-icon"><span class="material-icons-outlined">dark_mode</span></div>
+              <div class="flex-1">
+                <div class="title-sm">Dark Mode</div>
+              </div>
+              <div class="toggle" id="worker-dark-toggle">
+                <div class="toggle-knob"></div>
+              </div>
+            </div>
+          </div>
+          <div class="settings-list">
+            <div class="settings-item danger" onclick="logout()">
+              <div class="settings-icon"><span class="material-icons-outlined">logout</span></div>
+              <div class="title-sm flex-1">Log out</div>
+            </div>
+          </div>
+          <div class="text-center mt-4 mb-6 body-xs text-muted">VERSION 4.1.0 · UrbanFlow City Systems</div>
+        </div>
       </div>
-    </div>
 
-  </div><!-- /screen-container -->
+    </div><!-- /screen-container -->
 
-  <!-- Citizen Nav -->
-  <nav class="bottom-nav" id="global-citizen-nav" style="display:none">
-    <a class="nav-item active" onclick="navTo('screen-home',this)"><span class="material-icons-outlined">home</span><span class="nav-label">Home</span></a>
-    <a class="nav-item" onclick="navTo('screen-my-reports',this)"><span class="material-icons-outlined">assignment</span><span class="nav-label">Reports</span></a>
-    <a class="nav-item" onclick="navTo('screen-heatmap',this)"><span class="material-icons-outlined">map</span><span class="nav-label">Map</span></a>
-    <a class="nav-item" onclick="navTo('screen-support',this)"><span class="material-icons-outlined">support_agent</span><span class="nav-label">Help</span></a>
-    <a class="nav-item" onclick="navTo('screen-profile',this)"><span class="material-icons-outlined">person</span><span class="nav-label">Profile</span></a>
-  </nav>
+    <!-- Citizen Nav -->
+    <nav class="bottom-nav" id="global-citizen-nav" style="display:none">
+      <a class="nav-item active" onclick="navTo('screen-home',this)"><span
+          class="material-icons-outlined">home</span><span class="nav-label">Home</span></a>
+      <a class="nav-item" onclick="navTo('screen-my-reports',this)"><span
+          class="material-icons-outlined">assignment</span><span class="nav-label">Reports</span></a>
+      <a class="nav-item" onclick="navTo('screen-heatmap',this)"><span class="material-icons-outlined">map</span><span
+          class="nav-label">Map</span></a>
+      <a class="nav-item" onclick="navTo('screen-support',this)"><span
+          class="material-icons-outlined">support_agent</span><span class="nav-label">Help</span></a>
+      <a class="nav-item" onclick="navTo('screen-profile',this)"><span
+          class="material-icons-outlined">person</span><span class="nav-label">Profile</span></a>
+    </nav>
 
-  <!-- Worker Nav -->
-  <nav class="bottom-nav worker-bottom-nav" id="global-worker-nav" style="display:none">
-    <a class="nav-item active" onclick="navTo('screen-worker-tasks',this)"><span class="material-icons-outlined">assignment</span><span class="nav-label">Tasks</span></a>
-    <a class="nav-item" onclick="navTo('screen-worker-map',this)"><span class="material-icons-outlined">explore</span><span class="nav-label">Map</span></a>
-    <a class="nav-item" onclick="navTo('screen-attendance',this)"><span class="material-icons-outlined">qr_code_scanner</span><span class="nav-label">Attend</span></a>
-    <a class="nav-item" onclick="navTo('screen-worker-profile',this)"><span class="material-icons-outlined">badge</span><span class="nav-label">Profile</span></a>
-  </nav>
+    <!-- Worker Nav -->
+    <nav class="bottom-nav worker-bottom-nav" id="global-worker-nav" style="display:none">
+      <a class="nav-item active" onclick="navTo('screen-worker-tasks',this)"><span
+          class="material-icons-outlined">assignment</span><span class="nav-label">Tasks</span></a>
+      <a class="nav-item" onclick="navTo('screen-worker-map',this)"><span
+          class="material-icons-outlined">explore</span><span class="nav-label">Map</span></a>
+      <a class="nav-item" onclick="navTo('screen-attendance',this)"><span
+          class="material-icons-outlined">qr_code_scanner</span><span class="nav-label">Attend</span></a>
+      <a class="nav-item" onclick="navTo('screen-worker-profile',this)"><span
+          class="material-icons-outlined">badge</span><span class="nav-label">Profile</span></a>
+    </nav>
 
-</div>
+  </div>
 
-<script src="config.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app.js"></script>
+  <script src="config.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>
