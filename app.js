@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
   populateDemoAccounts();
   updateGlobalNavVisibility(currentScreen);
   
-  // Handle direct role routing from URL if present
-  checkRoleRouting();
+  // Handle direct role routing from URL if present (with 100ms delay for stability)
+  setTimeout(checkRoleRouting, 100);
 });
 
 function checkRoleRouting() {
