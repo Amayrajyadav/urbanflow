@@ -54,8 +54,24 @@ document.addEventListener('DOMContentLoaded', () => {
 function checkRoleRouting() {
   const params = new URLSearchParams(window.location.search);
   const role = params.get('role');
-  if (role) {
+  
+  if (role && ['citizen', 'worker', 'admin'].includes(role)) {
+    console.log('Auto-routing to role:', role);
+    
+    // Clear storage if switching roles to prevent stale state
+    if (currentRole && currentRole !== role) {
+      currentUser = null;
+      currentRole = null;
+    }
+    
     selectRole(role);
+    
+    // Auto-fill demo credentials for convenience if it's a 'working link' redirect
+    setTimeout(() => {
+      if (role === 'citizen') fillCitizenDemo('rahul@demo.com', 'password');
+      if (role === 'worker') fillWorkerDemo('arjun@demo.com', 'password');
+      if (role === 'admin') fillAdminDemo();
+    }, 300);
   }
 }
 
